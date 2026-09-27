@@ -1,0 +1,11 @@
+Shape: (20, 5)
+Columns: ['scenario_id', 'temperature_c', 'humidity_pct', 'occupancy_count', 'tariff_level']
+Missing values:
+scenario_id        0
+temperature_c      0
+humidity_pct       0
+occupancy_count    0
+tariff_level       0
+dtype: int64
+
+STEP 1 DATA CHECK PASSED

@@ -1,0 +1,2 @@
+scenario_id,temperature_c,humidity_pct,occupancy_count,tariff_level
+INVALID-001,abc,50,20,low

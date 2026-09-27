@@ -1,0 +1,13 @@
+Shape: (1, 5)
+Columns: ['scenario_id', 'temperature_c', 'humidity_pct', 'occupancy_count', 'tariff_level']
+Missing values:
+scenario_id        0
+temperature_c      0
+humidity_pct       0
+occupancy_count    0
+tariff_level       0
+dtype: int64
+Traceback (most recent call last):
+  File "/Users/vanshsharma/Desktop/SC01-Intelligent-Campus-Climate-and-Energy-Controller/src/validate_data.py", line 39, in <module>
+    raise ValueError(f"{column} must be numeric")
+ValueError: temperature_c must be numeric
