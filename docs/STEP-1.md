@@ -84,6 +84,17 @@ The following five scenarios are required for Step 1:
 | `SC01-005` |        21°C |      90% |        15 | low    | Cool but humid; fan decision           |
 
 These cases are intended to exercise normal, difficult, boundary, empty-room, and humidity-related conditions.
+### Expected Baseline Outputs
+
+| Test Case | Expected Cooling | Expected Fan Level | Expected Energy Action |
+|---|---:|---|---|
+| `SC01-001` | 50% | medium | normal |
+| `SC01-002` | 90% | high | normal |
+| `SC01-003` | 0% | off | avoid_peak |
+| `SC01-004` | 90% | medium | avoid_peak |
+| `SC01-005` | 10% | medium | normal |
+
+These expected outputs are produced by the numbered baseline rules in this document and are verified by `src/baseline_controller.py`.
 
 ## 10. Baseline Controller Rules
 
