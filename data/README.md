@@ -88,3 +88,25 @@ program correctly rejects malformed data.
 
 After Step 1 approval, the project may generate a larger reproducible dataset
 containing 10,000 or more scenarios for Soft Computing experiments.
+
+## Reference Sources
+
+The starter dataset is synthetic and was created for project development and
+testing. The following references are used to support the environmental
+assumptions and terminology used in the project:
+
+- ASHRAE Standard 55:
+  https://www.ashrae.org/technical-resources/bookstore/standard-55-thermal-environmental-conditions-for-human-occupancy
+
+- U.S. Environmental Protection Agency - Indoor Air Quality:
+  https://www.epa.gov/indoor-air-quality-iaq
+
+- Bureau of Energy Efficiency, India:
+  https://beeindia.gov.in/
+
+These sources provide background information related to thermal comfort,
+indoor environmental conditions, and energy efficiency. They do not provide
+the actual rows in `sample_input.csv`.
+
+The 20-row starter dataset is a synthetic fixture created by the project team.
+                                                                                                                                                                                                    
