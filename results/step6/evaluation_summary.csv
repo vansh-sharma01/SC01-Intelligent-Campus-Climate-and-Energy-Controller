@@ -1,0 +1,7 @@
+metric,value
+total_scenarios,20.0
+cooling_differences,11.0
+fan_differences,2.0
+energy_action_differences,0.0
+average_baseline_cooling,46.5
+average_fuzzy_cooling,52.0
