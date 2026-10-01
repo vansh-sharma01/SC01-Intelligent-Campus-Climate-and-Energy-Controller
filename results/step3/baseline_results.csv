@@ -1,0 +1,6 @@
+scenario_id,temperature_c,humidity_pct,occupancy_count,tariff_level,cooling_pct,fan_level,energy_action,status
+SC01-001,24,50,20,low,50,medium,normal,PASS
+SC01-002,36,85,45,medium,90,high,normal,PASS
+SC01-003,38,60,0,high,0,off,avoid_peak,PASS
+SC01-004,45,70,50,high,90,medium,avoid_peak,PASS
+SC01-005,21,90,15,low,10,medium,normal,PASS
