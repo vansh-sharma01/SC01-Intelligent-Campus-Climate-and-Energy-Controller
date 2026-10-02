@@ -1,130 +1,130 @@
-# Step 2 Data Quality Report
+# Step 2: Data Quality Report
 
 ## 1. Dataset Overview
 
-The dataset used for the Intelligent Campus Climate and Energy Controller
-contains synthetic climate, occupancy, and electricity tariff scenarios.
+The SC01 project uses 10,000 synthetically generated campus climate and energy scenarios for testing and evaluating the baseline and fuzzy controllers.
 
-The raw dataset is stored at:
+These records are generated test data and are not real campus measurements.
 
-`data/raw/sample_input.csv`
+* **Raw dataset:** `data/raw/generated_scenarios.csv`
+* **Processed dataset:** `data/processed/cleaned_input.csv`
+* **Generator:** `src/generate_scenarios.py`
+* **Random seed:** 42
+* **Raw dataset shape:** 10,000 rows × 5 columns
+* **Processed dataset shape:** 10,000 rows × 5 columns
 
-The processed dataset is stored at:
+## 2. Missing Values
 
-`data/processed/cleaned_input.csv`
+| Column          | Missing Values |
+| --------------- | -------------: |
+| scenario_id     |              0 |
+| temperature_c   |              0 |
+| humidity_pct    |              0 |
+| occupancy_count |              0 |
+| tariff_level    |              0 |
 
-The raw dataset contains 20 scenarios.
+**Result:** No missing values were found.
 
-## 2. Fields
+## 3. Duplicate Records
 
-| Field | Type | Description |
-|---|---|---|
-| `scenario_id` | Text | Unique scenario identifier |
-| `temperature_c` | Numeric | Room temperature in °C |
-| `humidity_pct` | Numeric | Relative humidity percentage |
-| `occupancy_count` | Integer | Number of occupants |
-| `tariff_level` | Category | `low`, `medium`, or `high` |
+* Duplicate scenario IDs: 0
+* Duplicate complete rows: 0
+* Rows removed during preparation: 0
 
-## 3. Missing Values
+**Result:** No duplicates were found.
 
-All required fields were checked for missing values.
+## 4. Numeric Data Ranges
 
-Result:
+| Feature         | Minimum | Maximum | Unit   |
+| --------------- | ------: | ------: | ------ |
+| temperature_c   |   18.00 |   44.99 | °C     |
+| humidity_pct    |   20.01 |   99.99 | %      |
+| occupancy_count |       0 |     100 | People |
 
-- `scenario_id`: 0 missing
-- `temperature_c`: 0 missing
-- `humidity_pct`: 0 missing
-- `occupancy_count`: 0 missing
-- `tariff_level`: 0 missing
+All observed values fall within the project's configured validation limits.
 
-## 4. Duplicate Checks
+## 5. Tariff Distribution
 
-Duplicate scenario IDs:
+Actual counts from the generated dataset:
 
-- 0
+| Tariff Level | Scenario Count |
+| ------------ | -------------: |
+| Low          |          3,519 |
+| Medium       |          3,506 |
+| High         |          2,975 |
+| **Total**    |     **10,000** |
 
-Duplicate complete rows:
+The generator uses target probabilities of 35% low, 35% medium, and 30% high. Actual counts vary according to random sampling.
 
-- 0
+## 6. Scenario Coverage
 
-Therefore, all 20 starter scenarios have unique scenario IDs and no
-duplicate rows.
+The generated dataset includes variation in:
 
-## 5. Value Ranges
+* Temperature
+* Humidity
+* Occupancy
+* Electricity tariff
 
-| Field | Minimum | Maximum |
-|---|---:|---:|
-| `temperature_c` | 18 °C | 45 °C |
-| `humidity_pct` | 20% | 100% |
-| `occupancy_count` | 0 | 100 |
+The dataset contains low and high values within the configured ranges, including zero occupancy and full occupancy.
 
-The observed values are within the documented starter-scenario ranges.
+The separate invalid test fixture is located at:
 
-## 6. Tariff Distribution
+`data/test/invalid_input.csv`
 
-| Tariff Level | Number of Scenarios |
-|---|---:|
-| `low` | 7 |
-| `medium` | 5 |
-| `high` | 8 |
-| **Total** | **20** |
+It contains an invalid temperature value (`abc`) for validation testing.
 
-All three documented tariff categories are represented.
+The generated dataset is intended for software testing and controller evaluation, not as a representation of measured campus conditions.
 
-## 7. Scenario Coverage
+## 7. Data Preparation Process
 
-The starter dataset includes scenarios covering different combinations
-of temperature, humidity, occupancy, and tariff conditions.
-
-The project will use additional reproducible scenarios for normal,
-boundary, stress, and invalid-case testing as the Step 2 pipeline is
-expanded.
-
-## 8. Validation
-
-The reusable validation and preparation program is:
+The preparation pipeline is implemented in:
 
 `src/prepare_data.py`
 
-It checks:
+Process:
 
-- Required columns are present.
-- Numeric climate and occupancy fields can be validated.
-- Required values are valid.
-- Scenario IDs are unique.
-- Temperature is within 18–45 °C.
-- Humidity is within 20–100%.
-- Occupancy is within 0–100.
-- Tariff level is `low`, `medium`, or `high`.
+1. Load the generated raw CSV.
+2. Convert numeric columns to numeric types.
+3. Remove duplicate complete rows.
+4. Check required columns.
+5. Validate scenario IDs and missing values.
+6. Check numeric ranges and tariff categories.
+7. Save the processed dataset.
 
-The preparation program successfully processed the 20-row starter dataset.
-
-Execution result:
-
-`VALIDATION PASSED`
-
-## 9. Processing Result
-
-The preparation script created:
+Output:
 
 `data/processed/cleaned_input.csv`
 
-Raw data remains unchanged in:
+The raw dataset is retained unchanged by the preparation process.
 
-`data/raw/sample_input.csv`
+## 8. Reproducibility
 
-## 10. Data Source and Limitations
+To regenerate the synthetic dataset:
 
-The starter dataset is synthetic and was created for project development,
-testing, and validation.
+```bash
+python3 src/generate_scenarios.py
+```
 
-It is not a collection of real measurements from a campus building.
+The fixed random seed is 42.
 
-Environmental assumptions are supported by background references documented
-in `data/README.md`.
+To prepare and validate the generated data:
 
-## 11. Next Step
+```bash
+python3 src/prepare_data.py
+```
 
-The next stage of Step 2 will expand the reproducible scenario pipeline
-with normal, boundary, stress, and invalid test cases and larger
-documented scenario coverage for Soft Computing experiments.
+## 9. Validation Summary
+
+* [x] 10,000 generated scenarios
+* [x] Required five input columns present
+* [x] No missing values
+* [x] No duplicate scenario IDs
+* [x] Numeric ranges within configured limits
+* [x] Valid tariff categories
+* [x] Processed CSV generated
+* [x] Notebook executed with saved outputs
+* [x] Validation passed
+
+**Overall result: DATA QUALITY CHECK PASSED**
+
+**Dataset status:** Synthetic testing data, not real-world campus observations.

@@ -1,8 +1,7 @@
 import pandas as pd
 import os
 
-
-INPUT_FILE = "data/raw/sample_input.csv"
+INPUT_FILE = "data/raw/generated_scenarios.csv"
 OUTPUT_DIR = "data/processed"
 
 
@@ -17,7 +16,6 @@ def clean_data(df):
 
     for column in numeric_columns:
         clean_df[column] = pd.to_numeric(clean_df[column], errors="coerce")
-        clean_df[column] = clean_df[column].fillna(clean_df[column].median())
 
     clean_df = clean_df.drop_duplicates().reset_index(drop=True)
 
