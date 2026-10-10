@@ -1,0 +1,11 @@
+scenario_id,temperature_c,humidity_pct,occupancy_count,tariff_level,scenario_type,cooling_pct,fan_level,energy_action
+TEST-NORMAL-001,24,50,20,low,normal,53.0,medium,normal
+TEST-NORMAL-002,28,55,45,medium,normal,53.3,medium,normal
+TEST-NORMAL-003,32,65,70,low,normal,83.0,high,normal
+TEST-BOUNDARY-001,18,20,0,low,boundary,0.0,off,save
+TEST-BOUNDARY-002,45,100,100,high,boundary,82.5,high,avoid_peak
+TEST-BOUNDARY-003,24,75,1,medium,boundary,52.7,medium,normal
+TEST-BOUNDARY-004,30,80,60,high,boundary,53.0,high,avoid_peak
+TEST-STRESS-001,45,100,100,high,stress,82.5,high,avoid_peak
+TEST-STRESS-002,44,95,100,high,stress,85.0,high,avoid_peak
+TEST-STRESS-003,40,90,95,high,stress,84.6,high,avoid_peak

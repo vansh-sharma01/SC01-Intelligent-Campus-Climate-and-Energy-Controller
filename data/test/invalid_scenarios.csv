@@ -1,0 +1,6 @@
+scenario_id,temperature_c,humidity_pct,occupancy_count,tariff_level
+INVALID-TEMP,46,50,20,low
+INVALID-HUMIDITY,25,101,20,low
+INVALID-OCCUPANCY,25,50,-1,low
+INVALID-TARIFF,25,50,20,urgent
+INVALID-MISSING,25,,20,medium

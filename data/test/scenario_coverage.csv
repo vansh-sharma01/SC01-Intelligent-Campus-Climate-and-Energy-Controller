@@ -1,0 +1,11 @@
+scenario_id,temperature_c,humidity_pct,occupancy_count,tariff_level,scenario_type
+TEST-NORMAL-001,24,50,20,low,normal
+TEST-NORMAL-002,28,55,45,medium,normal
+TEST-NORMAL-003,32,65,70,low,normal
+TEST-BOUNDARY-001,18,20,0,low,boundary
+TEST-BOUNDARY-002,45,100,100,high,boundary
+TEST-BOUNDARY-003,24,75,1,medium,boundary
+TEST-BOUNDARY-004,30,80,60,high,boundary
+TEST-STRESS-001,45,100,100,high,stress
+TEST-STRESS-002,44,95,100,high,stress
+TEST-STRESS-003,40,90,95,high,stress
