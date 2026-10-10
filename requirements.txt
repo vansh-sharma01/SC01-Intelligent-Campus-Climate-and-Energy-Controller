@@ -17,3 +17,4 @@ zipp==3.23.1
 scikit-fuzzy==0.5.0
 networkx==3.2.1
 scipy==1.13.1
+streamlit==1.50.0
