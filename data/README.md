@@ -1,32 +1,36 @@
-# Starter Dataset Documentation
+k# Dataset Documentation — SC01
 
-## Purpose
+## 1. Purpose
 
-This file documents the fields, units, sources, and assumptions used in the
-starter dataset for the Intelligent Campus Climate and Energy Controller.
+This document describes the datasets used by the Intelligent Campus Climate and Energy Controller. The data supports input validation, baseline controller testing, fuzzy controller experiments, and scenario-based evaluation.
 
-## Dataset File
+**Important:** All project datasets described here are synthetic testing data. They are not measurements collected from a live campus building.
 
-The starter dataset is stored in:
+## 2. Dataset Files
 
-`data/sample_input.csv`
+| File | Description | Records |
+|---|---|---:|
+| `data/sample_input.csv` | Starter dataset for initial validation and controller testing | 20 |
+| `data/raw/generated_scenarios.csv` | Generated dataset for larger-scale experiments | 10,000 |
+| `data/processed/cleaned_input.csv` | Processed output produced by the data preparation pipeline | 10,000 |
+| `data/test/invalid_input.csv` | Test fixture containing a non-numeric temperature | 1 |
+| `data/test/invalid_scenarios.csv` | Test cases containing invalid values | 5 |
 
-The dataset contains 20 starter scenarios used for initial validation and
-baseline controller testing.
+The original generated dataset is retained in `data/raw/`. Data preparation writes the processed dataset to `data/processed/cleaned_input.csv`.
 
-## Fields
+## 3. Fields and Units
 
-| Field | Meaning | Unit / Type | Valid Range / Values |
+| Field | Meaning | Unit / Type | Accepted Values |
 |---|---|---|---|
-| `scenario_id` | Unique identifier for each scenario | Text | Unique value |
-| `temperature_c` | Room temperature | °C | 18–45 °C for starter scenarios |
-| `humidity_pct` | Relative humidity | % | 20–100% |
-| `occupancy_count` | Number of people present in the room | People / integer | 0 to room capacity |
-| `tariff_level` | Electricity tariff category | Category | `low`, `medium`, `high` |
+| `scenario_id` | Unique scenario identifier | Text | Non-empty and unique |
+| `temperature_c` | Room temperature | Degrees Celsius | 18–45°C |
+| `humidity_pct` | Relative humidity | Percentage | 0–100% |
+| `occupancy_count` | Number of people in the room | Non-negative number | 0 or greater |
+| `tariff_level` | Electricity tariff category | Categorical text | `low`, `medium`, `high` |
 
-## Output Fields
+The generated dataset uses temperatures between 18°C and 45°C, humidity between 0% and 100%, and occupancy counts between 0 and 100.
 
-The controller will produce the following recommendations:
+## 4. Controller Output Fields
 
 | Output | Meaning | Values |
 |---|---|---|
@@ -34,79 +38,94 @@ The controller will produce the following recommendations:
 | `fan_level` | Recommended fan level | `off`, `low`, `medium`, `high` |
 | `energy_action` | Recommended energy-management action | `normal`, `save`, `avoid_peak` |
 
-## Data Source
+These fields are controller outputs, not measured energy-consumption values.
 
-The starter dataset is a **synthetic project fixture** created for development,
-testing, and validation.
+## 5. Data Source and Generation
 
-It is not collected from a live campus building and should not be treated as
-real measured campus data.
+The starter dataset and generated scenarios are created for this project. The generated dataset is produced by:
 
-## Assumptions
+`src/generate_scenarios.py`
 
-1. Temperature is measured in degrees Celsius.
+The generation process uses a fixed random seed of **42** for repeatability. The generated tariff distribution is configured with target proportions of approximately 35% low, 35% medium, and 30% high.
+
+The generated CSV contains 10,000 scenarios. The seed makes the generation process reproducible when the script and its generation logic remain unchanged.
+
+No external dataset is claimed as the source of the generated records.
+
+## 6. Assumptions and Limitations
+
+1. Temperature is expressed in degrees Celsius.
 2. Humidity represents relative humidity as a percentage.
-3. Occupancy is represented as a whole-number count of people.
-4. Occupancy cannot be negative.
-5. A room with zero occupants can use an energy-saving rule.
-6. The starter room capacity is assumed to be sufficient for the provided
-   occupancy values.
-7. Tariff level is represented using three categories: `low`, `medium`, and
-   `high`.
-8. Starter temperature values are designed to cover comfortable, warm, hot,
-   and boundary conditions.
-9. The dataset is intended for testing the baseline controller before larger
-   scenario generation begins.
-10. The starter dataset does not represent actual energy consumption or actual
-    HVAC measurements.
+3. Occupancy represents a non-negative count of people.
+4. Scenario identifiers must be unique and non-empty.
+5. The room may be unoccupied; zero occupancy is a valid scenario.
+6. Tariff levels are represented by `low`, `medium`, and `high`.
+7. The generated scenarios are intended for software testing and controller comparison.
+8. Synthetic scenarios do not establish real-world HVAC performance or energy savings.
+9. The datasets do not contain measured energy consumption or validated building sensor readings.
+10. Results from these datasets should not be interpreted as proof of real-world performance without testing against suitable real measurements.
 
-## Validation Rules
+## 7. Validation Rules
 
-The validation program checks that:
+The reusable validator is located at `src/validate_data.py`.
+
+It checks:
 
 - Required columns are present.
 - Required values are not missing.
-- Temperature is numeric.
-- Humidity is numeric.
-- Occupancy is numeric.
-- Temperature is within the accepted validation range.
-- Humidity is between 0 and 100%.
-- Occupancy is not negative.
+- Scenario identifiers are non-empty and unique.
+- Temperature, humidity, and occupancy fields are numeric.
+- Temperature is between 18°C and 45°C, inclusive.
+- Humidity is between 0% and 100%, inclusive.
+- Occupancy is non-negative.
 - Tariff level is `low`, `medium`, or `high`.
-- Each `scenario_id` is unique.
 
-## Invalid Test Data
+## 8. Data Preparation and Repeatability
 
-An intentionally invalid dataset is stored at:
+From the repository root, use these commands:
 
-`data/test/invalid_input.csv`
+Generate the scenarios:
 
-It contains an invalid temperature value (`abc`) to verify that the validation
-program correctly rejects malformed data.
+`python3 src/generate_scenarios.py`
 
-## Future Data
+Validate the generated dataset:
 
-After Step 1 approval, the project may generate a larger reproducible dataset
-containing 10,000 or more scenarios for Soft Computing experiments.
+`python3 src/validate_data.py data/raw/generated_scenarios.csv`
 
-## Reference Sources
+Prepare the processed dataset:
 
-The starter dataset is synthetic and was created for project development and
-testing. The following references are used to support the environmental
-assumptions and terminology used in the project:
+`python3 src/prepare_data.py`
 
-- ASHRAE Standard 55:
-  https://www.ashrae.org/technical-resources/bookstore/standard-55-thermal-environmental-conditions-for-human-occupancy
+Validate the starter dataset:
 
-- U.S. Environmental Protection Agency - Indoor Air Quality:
-  https://www.epa.gov/indoor-air-quality-iaq
+`python3 src/validate_data.py data/sample_input.csv`
 
-- Bureau of Energy Efficiency, India:
-  https://beeindia.gov.in/
+Inspect the dataset using the executed notebook:
 
-These sources provide background information related to thermal comfort,
-indoor environmental conditions, and energy efficiency. They do not provide
-the actual rows in `sample_input.csv`.
+`notebooks/01_data_inspection.ipynb`
 
-The 20-row starter dataset is a synthetic fixture created by the project team.
-                                                                                                                                                                                                    
+The data quality summary is maintained at:
+
+`data/reports/data_quality_report.md`
+
+The preparation pipeline is intended to preserve the raw dataset and write its cleaned output separately.
+
+## 9. Data Quality and Testing
+
+The generated dataset has been checked for row count, missing values, duplicate scenario identifiers, numeric ranges, and tariff distribution. The corresponding results are recorded in `data/reports/data_quality_report.md`.
+
+Additional normal, boundary, and stress scenarios are stored in `data/test/scenario_coverage.csv`. Invalid-input fixtures are stored under `data/test/`.
+
+These fixtures test input handling and scenario coverage; they are not additional real-world observations.
+
+## 10. Reference Sources
+
+The following sources provide background on thermal comfort, indoor environmental conditions, and energy efficiency. They are **background references, not sources of the generated CSV rows**.
+
+- ASHRAE Standard 55 — Thermal Environmental Conditions for Human Occupancy: https://www.ashrae.org/technical-resources/bookstore/standard-55-thermal-environmental-conditions-for-human-occupancy
+- U.S. Environmental Protection Agency — Indoor Air Quality: https://www.epa.gov/indoor-air-quality-iaq
+- Bureau of Energy Efficiency, India: https://beeindia.gov.in/
+
+## 11. Data Integrity Statement
+
+The project distinguishes synthetic scenarios from real measurements. The raw generated dataset is retained separately from the processed dataset, and the generation script and quality report document the workflow used for experiments.
