@@ -1,0 +1,26 @@
+metric,controller,value
+total_scenarios,all,20
+average_cooling_output_pct,baseline,46.5
+minimum_cooling_output_pct,baseline,0
+maximum_cooling_output_pct,baseline,90
+fan_level_distribution,baseline,"{'medium': 11, 'high': 5, 'off': 3, 'low': 1}"
+avoid_peak_scenarios,baseline,8
+average_cooling_output_pct,fuzzy,49.15
+minimum_cooling_output_pct,fuzzy,0.0
+maximum_cooling_output_pct,fuzzy,90.0
+fan_level_distribution,fuzzy,"{'medium': 9, 'high': 7, 'off': 3, 'low': 1}"
+avoid_peak_scenarios,fuzzy,8
+average_cooling_output_pct,ga_fuzzy,35.46
+minimum_cooling_output_pct,ga_fuzzy,0.0
+maximum_cooling_output_pct,ga_fuzzy,72.09
+fan_level_distribution,ga_fuzzy,"{'medium': 9, 'high': 7, 'off': 3, 'low': 1}"
+avoid_peak_scenarios,ga_fuzzy,8
+cooling_output_differences,baseline_vs_fuzzy,12
+fan_level_differences,baseline_vs_fuzzy,6
+energy_action_differences,baseline_vs_fuzzy,0
+cooling_output_differences,baseline_vs_ga_fuzzy,17
+fan_level_differences,baseline_vs_ga_fuzzy,4
+energy_action_differences,baseline_vs_ga_fuzzy,0
+cooling_output_differences,fuzzy_vs_ga_fuzzy,17
+fan_level_differences,fuzzy_vs_ga_fuzzy,4
+energy_action_differences,fuzzy_vs_ga_fuzzy,0

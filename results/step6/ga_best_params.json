@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "population_size": 24,
+  "generations": 20,
+  "sample_size": 400,
+  "fitness_definition": "RMSE against a synthetic temperature/occupancy/humidity cooling-demand heuristic plus a 0.05 mean-cooling penalty for high-tariff scenarios. Not measured energy savings.",
+  "best_fitness": 17.060584173407108,
+  "parameters": {
+    "t1": 27.0,
+    "t2": 29.604999229067687,
+    "t3": 38.799141920671985,
+    "cool_low": 8.27559249683157,
+    "cool_medium": 31.409208341566583,
+    "cool_high": 72.087664614239
+  }
+}

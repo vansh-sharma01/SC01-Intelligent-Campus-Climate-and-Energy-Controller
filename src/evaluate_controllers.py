@@ -1,46 +1,79 @@
-import pandas as pd
 import os
 
+import pandas as pd
 
-input_file = "results/step5/controller_comparison.csv"
-output_file = "results/step6/evaluation_summary.csv"
+
+input_file = "results/step7/three_controller_comparison.csv"
+output_file = "results/step7/evaluation_summary.csv"
 
 df = pd.read_csv(input_file)
 
-cooling_difference = (
-    df["baseline_cooling_pct"] != df["fuzzy_cooling_pct"]
-)
+controllers = {
+    "baseline": "baseline",
+    "fuzzy": "fuzzy",
+    "ga_fuzzy": "ga_fuzzy",
+}
 
-fan_difference = (
-    df["baseline_fan_level"] != df["fuzzy_fan_level"]
-)
+rows = [
+    {"metric": "total_scenarios", "controller": "all", "value": len(df)}
+]
 
-energy_difference = (
-    df["baseline_energy_action"] != df["fuzzy_energy_action"]
-)
+for label, prefix in controllers.items():
+    rows.extend([
+        {
+            "metric": "average_cooling_output_pct",
+            "controller": label,
+            "value": round(df[f"{prefix}_cooling_pct"].mean(), 2),
+        },
+        {
+            "metric": "minimum_cooling_output_pct",
+            "controller": label,
+            "value": round(df[f"{prefix}_cooling_pct"].min(), 2),
+        },
+        {
+            "metric": "maximum_cooling_output_pct",
+            "controller": label,
+            "value": round(df[f"{prefix}_cooling_pct"].max(), 2),
+        },
+        {
+            "metric": "fan_level_distribution",
+            "controller": label,
+            "value": df[f"{prefix}_fan_level"].value_counts().to_dict(),
+        },
+        {
+            "metric": "avoid_peak_scenarios",
+            "controller": label,
+            "value": int((df[f"{prefix}_energy_action"] == "avoid_peak").sum()),
+        },
+    ])
 
-summary = pd.DataFrame({
-    "metric": [
-        "total_scenarios",
-        "cooling_differences",
-        "fan_differences",
-        "energy_action_differences",
-        "average_baseline_cooling",
-        "average_fuzzy_cooling"
-    ],
-    "value": [
-        len(df),
-        cooling_difference.sum(),
-        fan_difference.sum(),
-        energy_difference.sum(),
-        df["baseline_cooling_pct"].mean(),
-        df["fuzzy_cooling_pct"].mean()
-    ]
-})
+for left, right in [
+    ("baseline", "fuzzy"),
+    ("baseline", "ga_fuzzy"),
+    ("fuzzy", "ga_fuzzy"),
+]:
+    for metric, suffix in [
+        ("cooling_output_differences", "cooling_pct"),
+        ("fan_level_differences", "fan_level"),
+        ("energy_action_differences", "energy_action"),
+    ]:
+        rows.append({
+            "metric": metric,
+            "controller": f"{left}_vs_{right}",
+            "value": int(
+                (df[f"{left}_{suffix}"] != df[f"{right}_{suffix}"]).sum()
+            ),
+        })
 
-os.makedirs("results/step6", exist_ok=True)
+summary = pd.DataFrame(rows)
+
+os.makedirs("results/step7", exist_ok=True)
 summary.to_csv(output_file, index=False)
 
-print("Controller evaluation completed successfully.")
+print("Three-controller evaluation completed.")
 print(summary.to_string(index=False))
 print(f"Results saved to {output_file}")
+print(
+    "\nNote: cooling output is a simulated controller command, "
+    "not measured energy consumption or verified energy savings."
+)
