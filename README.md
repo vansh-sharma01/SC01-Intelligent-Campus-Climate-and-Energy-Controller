@@ -283,6 +283,17 @@ streamlit run app/app.py
 
 The dashboard provides interactive scenario inputs, including temperature, humidity, occupancy, and tariff level, and displays controller recommendations.
 
+### Public Deployment
+
+The application is deployed on Streamlit Community Cloud and has been opened and tested through its public URL.
+
+- **Live app:** https://sc01-intelligent-campus-climate-and-energy-controller-bguednbl.streamlit.app/
+- **Deployment branch:** `step-6-evaluation`
+- **Entry-point file:** `app/app.py`
+- **Dependencies:** Installed from the repository's `requirements.txt`.
+
+The public app was verified in a browser on 12 October 2026. Recheck the live URL before the final presentation.
+
 The dashboard is a simulation interface. It is not connected to physical HVAC equipment and does not directly control a real building.
 
 ## 14. Environment Setup
@@ -396,7 +407,7 @@ Remaining checks may include:
 2. Review GA fitness-history behavior and repeatability.
 3. Test difficult, boundary, and stress scenarios against expected behavior.
 4. Confirm that the comparison and evaluation metrics meet the roadmap requirements.
-5. Verify deployment and Product V2 requirements.
+5. Review Product V2 requirements against the roadmap; public deployment has been completed and browser-tested.
 6. Prepare the final report, presentation, demonstration video, and viva materials where required.
 7. Confirm that source files, dependencies, results, and documentation are committed and pushed.
 

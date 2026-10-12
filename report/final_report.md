@@ -132,7 +132,14 @@ To run the interface locally from the repository root:
 streamlit run app/app.py
 ```
 
-A successful local run does not establish that the application has been publicly deployed. Deployment status and any public URL must be verified separately.
+The application is publicly deployed on Streamlit Community Cloud and was opened and tested in a browser on 12 October 2026.
+
+- **Live app:** https://sc01-intelligent-campus-climate-and-energy-controller-bguednbl.streamlit.app/
+- **Deployment branch:** `step-6-evaluation`
+- **Entry-point file:** `app/app.py`
+- **Dependency configuration:** `requirements.txt`
+
+Recheck the public URL before the final presentation; deployment availability may change.
 
 ## 8. Validation and Reproducibility
 
@@ -156,7 +163,7 @@ Re-run the relevant commands before final submission if any source code, configu
 3. The GA optimizes a heuristic objective, not a validated physical energy model.
 4. Lower recommended cooling is not sufficient evidence of energy savings or acceptable thermal comfort.
 5. The comparison covers a finite set of scenarios; broader boundary and stress-case evaluation remains useful.
-6. Public deployment, deployment URL, demonstration recording, and final viva materials must be verified or completed separately if required by the submission rubric.
+6. Public deployment is complete and browser-tested. Demonstration recording and final viva materials must still be completed or verified if required by the submission rubric.
 
 Future work should evaluate the controller against measured building data, define validated comfort and energy metrics, broaden stress testing, and document deployment and user testing.
 
