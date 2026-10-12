@@ -1,4 +1,4 @@
-k# Dataset Documentation — SC01
+# Dataset Documentation — SC01
 
 ## 1. Purpose
 
