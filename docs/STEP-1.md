@@ -304,3 +304,28 @@ After Step 1 approval, the project can proceed to the next stage, including:
 
 The Step 1 baseline should remain available as the reference system for future comparisons.
 
+
+## 18. Soft Computing Method for M1
+
+The M1 Soft Computing method is a fuzzy logic controller. It uses room temperature, humidity, and occupancy to recommend cooling and fan settings. Its outputs are compared with the deterministic baseline controller. The implementation and results are documented in `src/fuzzy_controller.py` and `results/step4/`.
+
+## 19. Advanced Method for M2
+
+The M2 advanced method is a Genetic Algorithm (GA) used to tune fuzzy-controller parameters. Its results are compared with both the baseline and the original fuzzy controller. The implementation and evaluation evidence are maintained in the project source and `results/step6/` and `results/step7/`.
+
+## 20. Dataset and Scenario Sources
+
+The project uses programmatically generated synthetic climate and occupancy scenarios rather than claiming to use real campus sensor measurements. The scenario generator uses a fixed random seed for reproducibility. The generation process, field definitions, ranges, and assumptions are documented in `data/README.md` and `data/reports/data_quality_report.md`. These scenarios are for educational testing and do not establish real-world energy savings.
+
+## 21. Risks and Assumptions
+
+- Synthetic scenarios may not represent actual campus conditions.
+- Temperature and humidity thresholds are design assumptions, not validated HVAC engineering limits.
+- The controller provides recommendations and is not connected to or controlling real HVAC equipment.
+- Lower cooling output alone does not prove lower energy consumption or acceptable thermal comfort.
+- GA-tuned results depend on the selected scenarios, fitness function, and parameter bounds.
+- Real-world use would require measured data, expert review, and physical-system validation.
+
+## 22. Step 1 Completion Evidence
+
+The repository contains the project contract, sample data, validation program, baseline rules, five mandatory test cases, validation outputs, and Product V1 screen sketch. Supporting evidence is available in `results/step1/`, `docs/baseline-pseudocode.md`, and `docs/product-v1-sketch.png`. Later controller implementations and evaluations are recorded in `results/step3/` through `results/step7/`.
