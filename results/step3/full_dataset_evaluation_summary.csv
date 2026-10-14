@@ -1,0 +1,12 @@
+metric,value
+total_scenarios,10000
+occupied_scenarios,9907
+unoccupied_scenarios,93
+comfort_band_min_c_assumption,22.0
+comfort_band_max_c_assumption,26.0
+occupied_scenarios_outside_comfort_band,8423
+occupied_scenarios_outside_band_pct,85.02
+mean_relative_control_demand_proxy,0.4735
+scenarios_avoiding_peak,2975
+energy_metric_limitation,Relative proxy only; not measured kWh or verified energy savings
+comfort_metric_limitation,"Snapshot count, not time; 22-26 C is an assumed band"

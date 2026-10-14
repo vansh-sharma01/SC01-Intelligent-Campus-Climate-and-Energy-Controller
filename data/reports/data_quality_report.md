@@ -128,3 +128,28 @@ python3 src/prepare_data.py
 **Overall result: DATA QUALITY CHECK PASSED**
 
 **Dataset status:** Synthetic testing data, not real-world campus observations.
+
+## 10. Explicit Scenario Validation Rules
+
+The validation rules below are implemented in `src/validate_data.py`.
+
+| Validation | Rule |
+|---|---|
+| Required columns | `scenario_id`, `temperature_c`, `humidity_pct`, `occupancy_count`, `tariff_level` must be present |
+| Missing values | No missing values are permitted in the required columns |
+| Numeric conversion | Temperature, humidity, and occupancy must be convertible to numeric values |
+| Scenario IDs | IDs must not be empty or contain only whitespace; duplicate IDs are rejected |
+| Temperature | 18–45 °C, inclusive |
+| Relative humidity | 20–100%, inclusive |
+| Occupancy | 0–100 people, inclusive |
+| Tariff level | Must be exactly `low`, `medium`, or `high` |
+
+The validator raises an error when a required column is absent or any of the listed checks fails. It reads the raw generated dataset by default; a different CSV path can be supplied as a command-line argument.
+
+Run the validation with:
+
+```bash
+python3 src/validate_data.py data/raw/generated_scenarios.csv
+```
+
+**Scope:** These rules validate the software's input schema and configured value ranges. They do not establish that the synthetic scenarios represent actual campus conditions or measured HVAC performance.
