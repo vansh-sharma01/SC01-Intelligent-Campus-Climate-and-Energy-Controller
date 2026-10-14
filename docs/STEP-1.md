@@ -83,7 +83,7 @@ The following five scenarios are required for Step 1:
 | `SC01-004` |        45°C |      70% |        50 | high   | Heat-wave boundary condition           |
 | `SC01-005` |        21°C |      90% |        15 | low    | Cool but humid; fan decision           |
 
-These cases are intended to exercise normal, difficult, boundary, empty-room, and humidity-related conditions.
+These cases are intended to exercise normal, stress, boundary, empty-room, and humidity-related conditions.
 ### Expected Baseline Outputs
 
 | Test Case | Expected Cooling | Expected Fan Level | Expected Energy Action |

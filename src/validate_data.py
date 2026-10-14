@@ -1,6 +1,7 @@
 import pandas as pd
+import sys
 
-FILE = "data/sample_input.csv"
+FILE = sys.argv[1] if len(sys.argv) > 1 else "data/raw/generated_scenarios.csv"
 
 REQUIRED = [
     "scenario_id",
@@ -18,46 +19,40 @@ NUMERIC = [
 
 df = pd.read_csv(FILE)
 
+print("File:", FILE)
 print("Shape:", df.shape)
-print("Columns:", list(df.columns))
 print("Missing values:")
 print(df.isna().sum())
 
-# Check required columns
 missing_columns = [c for c in REQUIRED if c not in df.columns]
 
 if missing_columns:
     raise ValueError(f"Missing columns: {missing_columns}")
 
-# Check missing values
 if df[REQUIRED].isna().any().any():
     raise ValueError("Missing value found")
 
-# Check numeric columns
 for column in NUMERIC:
-    if not pd.api.types.is_numeric_dtype(df[column]):
-        raise ValueError(f"{column} must be numeric")
+    df[column] = pd.to_numeric(df[column], errors="raise")
 
-# Check temperature
-if not df["temperature_c"].between(0, 50).all():
-    raise ValueError("Temperature must be between 0 and 50°C")
+if df["scenario_id"].astype(str).str.strip().eq("").any():
+    raise ValueError("Empty scenario ID found")
 
-# Check humidity
-if not df["humidity_pct"].between(0, 100).all():
-    raise ValueError("Humidity must be between 0 and 100%")
+if df["scenario_id"].duplicated().any():
+    raise ValueError("Duplicate scenario_id found")
 
-# Check occupancy
-if (df["occupancy_count"] < 0).any():
-    raise ValueError("Occupancy cannot be negative")
+if not df["temperature_c"].between(18, 45).all():
+    raise ValueError("Temperature must be between 18 and 45°C")
 
-# Check tariff
+if not df["humidity_pct"].between(20, 100).all():
+    raise ValueError("Humidity must be between 20 and 100%")
+
+if not df["occupancy_count"].between(0, 100).all():
+    raise ValueError("Occupancy must be between 0 and 100")
+
 valid_tariffs = ["low", "medium", "high"]
 
 if not df["tariff_level"].isin(valid_tariffs).all():
     raise ValueError("Invalid tariff level")
 
-# Check unique IDs
-if df["scenario_id"].duplicated().any():
-    raise ValueError("Duplicate scenario_id found")
-
-print("\nSTEP 1 DATA CHECK PASSED")
+print("\nDATA VALIDATION PASSED")
