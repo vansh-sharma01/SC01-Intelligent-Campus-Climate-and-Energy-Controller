@@ -152,6 +152,20 @@ def fuzzy_controller(row):
     occupancy = int(row["occupancy_count"])
     tariff = row["tariff_level"]
 
+    if not 18 <= temperature <= 45:
+        raise ValueError("temperature_c must be between 18 and 45")
+
+    if not 20 <= humidity <= 100:
+        raise ValueError("humidity_pct must be between 20 and 100")
+
+    if not 0 <= occupancy <= 100:
+        raise ValueError("occupancy_count must be between 0 and 100")
+
+    if tariff not in {"low", "medium", "high"}:
+        raise ValueError(
+            "tariff_level must be one of: low, medium, high"
+        )
+
     if occupancy == 0:
         return pd.Series({
             "cooling_pct": 0,

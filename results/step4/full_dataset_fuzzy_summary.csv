@@ -1,0 +1,2 @@
+total_scenarios,occupied_scenarios,unoccupied_scenarios,mean_cooling_pct,median_cooling_pct,low_fan_count,medium_fan_count,high_fan_count,off_fan_count,avoid_peak_count,save_count,normal_count,starter_scenarios_match,elapsed_seconds,limitation
+10000,9907,93,66.59,83.1,649,2488,6770,93,2975,732,6293,True,56.24,Synthetic scenarios and controller outputs are not measured HVAC energy consumption or verified energy savings.
