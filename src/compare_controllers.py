@@ -7,7 +7,7 @@ from baseline_controller import baseline_controller
 from fuzzy_controller import fuzzy_controller
 
 
-input_file = "data/sample_input.csv"
+input_file = "data/processed/cleaned_input.csv"
 params_file = "results/step6/ga_best_params.json"
 output_file = "results/step7/three_controller_comparison.csv"
 
