@@ -397,19 +397,26 @@ Implemented in the repository:
 
 The implementation status above describes repository components. It does not mean every academic requirement has been verified or every submission deliverable has been completed.
 
-## 18. Remaining Submission Checks
+## 18. Final Submission Checklist
 
-Before declaring the project complete, verify the official SC01 roadmap and applicable SC11 guide against the actual repository and submission evidence.
+The following items have been completed based on the repository artifacts and checks performed during development:
 
-Remaining checks may include:
+- [x] Data pipeline and input validation implemented and checked.
+- [x] Baseline controller and fuzzy-controller workflow implemented.
+- [x] Genetic-algorithm tuning, fitness-history repeatability, and saved best parameters reviewed.
+- [x] Three-controller comparison and evaluation artifacts generated and reviewed.
+- [x] Boundary and input-validation checks performed; relevant automated tests passed.
+- [x] Product V1 sketch and Product V2 dashboard artifacts included in the repository.
+- [x] Product V2 deployed publicly and browser-tested.
+- [x] Final report, presentation, and dashboard evidence committed and pushed.
 
-1. Verify the Product V1 interface and required demonstration evidence.
-2. Review GA fitness-history behavior and repeatability.
-3. Test difficult, boundary, and stress scenarios against expected behavior.
-4. Confirm that the comparison and evaluation metrics meet the roadmap requirements.
-5. Review Product V2 requirements against the roadmap; public deployment has been completed and browser-tested.
-6. Prepare the final report, presentation, demonstration video, and viva materials where required.
-7. Confirm that source files, dependencies, results, and documentation are committed and pushed.
+Before final submission, confirm the following requirements with the official SC01 roadmap and faculty instructions:
+
+- [ ] Confirm whether additional Product V1 demonstration evidence is required.
+- [ ] Confirm whether a demonstration video, viva materials, or any other deliverable is explicitly required.
+- [ ] Check that the final submission follows the prescribed naming, format, and submission procedure.
+
+Do not claim real-world energy savings or HVAC suitability: the project uses synthetic scenarios and a heuristic optimization objective.
 
 ## 19. Limitations
 
