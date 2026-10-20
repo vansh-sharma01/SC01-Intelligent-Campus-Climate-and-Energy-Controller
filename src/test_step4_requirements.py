@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from validate_data import validate_data
 from fuzzy_controller import fuzzy_controller
+from baseline_controller import baseline_controller
 
 
 class Step4RequirementsTests(unittest.TestCase):
@@ -116,6 +117,24 @@ class Step4RequirementsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.validate_frame(pd.DataFrame([row, row]))
 
+    def test_baseline_zero_occupancy_turns_cooling_and_fan_off(self):
+        cooling, fan, action = baseline_controller(38, 60, 0, "high")
+        self.assertEqual((cooling, fan, action), (0, "off", "avoid_peak"))
+
+    def test_high_tariff_triggers_avoid_peak_for_both_controllers(self):
+        _, _, baseline_action = baseline_controller(28, 50, 20, "high")
+
+        row = pd.Series({
+            "temperature_c": 28,
+            "humidity_pct": 50,
+            "occupancy_count": 20,
+            "tariff_level": "high",
+        })
+        fuzzy_result = fuzzy_controller(row)
+
+        self.assertEqual(baseline_action, "avoid_peak")
+        self.assertEqual(fuzzy_result["energy_action"], "avoid_peak")
+
     def test_fuzzy_outputs_stay_within_defined_ranges(self):
         scenarios = [
             (18, 0, 0, "low"),
@@ -131,6 +150,7 @@ class Step4RequirementsTests(unittest.TestCase):
                 "tariff_level": tariff,
             })
             result = fuzzy_controller(row)
+
             self.assertTrue(0 <= result["cooling_pct"] <= 100)
             self.assertIn(
                 result["fan_level"], ["off", "low", "medium", "high"]
