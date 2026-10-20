@@ -1,3 +1,4 @@
+
 import json
 import sys
 from pathlib import Path
@@ -25,7 +26,12 @@ st.write(
     "a rule-based baseline, fuzzy logic, and GA-tuned fuzzy logic."
 )
 
-# Load the previously saved GA parameters. Do not retrain the GA here.
+st.caption(
+    "This is a simulation using synthetic optimization data, "
+    "not a physical HVAC controller or proof of measured energy savings."
+)
+
+# Load previously saved GA parameters. Do not retrain the GA here.
 params_path = ROOT / "results" / "step6" / "ga_best_params.json"
 
 with params_path.open("r", encoding="utf-8") as file:
@@ -33,6 +39,7 @@ with params_path.open("r", encoding="utf-8") as file:
 
 ga_params = ga_results["parameters"]
 
+# Scenario inputs
 st.sidebar.header("Room Scenario")
 
 temperature = st.sidebar.slider(
@@ -56,6 +63,7 @@ scenario = pd.Series({
     "tariff_level": tariff,
 })
 
+# Run all three controllers
 baseline_cooling, baseline_fan, baseline_action = baseline_controller(
     temperature, humidity, occupancy, tariff
 )
@@ -81,9 +89,11 @@ controllers = {
     },
 }
 
+# Main comparison
 st.subheader("Three-Controller Comparison")
 
 columns = st.columns(3)
+
 for column, (name, values) in zip(columns, controllers.items()):
     with column:
         st.markdown(f"### {name}")
@@ -91,6 +101,7 @@ for column, (name, values) in zip(columns, controllers.items()):
         st.write("**Fan level:**", values["Fan Level"])
         st.write("**Energy action:**", values["Energy Action"])
 
+# Output table
 st.subheader("Output Comparison")
 
 output_table = pd.DataFrame(controllers)
@@ -98,8 +109,66 @@ output_table.insert(
     0, "Output", ["Cooling (%)", "Fan Level", "Energy Action"]
 )
 output_table["Output"] = output_table["Output"].astype(str)
-st.dataframe(output_table, hide_index=True, use_container_width=True)
 
+st.dataframe(
+    output_table,
+    hide_index=True,
+    use_container_width=True,
+)
+
+# New: explanation of controller recommendations
+st.subheader("Recommendation Explanation")
+
+if occupancy == 0:
+    st.info(
+        "The room is unoccupied. All three controllers are evaluated for "
+        "this scenario; check the comparison above for their actual outputs."
+    )
+else:
+    st.write(
+        f"**Baseline:** At {temperature:.1f} °C, the baseline uses fixed "
+        "temperature thresholds to select cooling. Humidity can also "
+        "increase its fan level."
+    )
+
+    st.write(
+        f"**Fuzzy:** This controller combines temperature, occupancy, "
+        "and humidity through fuzzy membership rules. Its output for this "
+        f"scenario is {fuzzy['cooling_pct']:.2f}% cooling with a "
+        f"{fuzzy['fan_level']} fan."
+    )
+
+    st.write(
+        "**GA-tuned Fuzzy:** This uses the fuzzy controller with parameters "
+        "saved from the genetic-algorithm optimization experiment. Its "
+        f"output is {ga_fuzzy['cooling_pct']:.2f}% cooling with a "
+        f"{ga_fuzzy['fan_level']} fan."
+    )
+
+if tariff == "high":
+    st.write(
+        "**Tariff note:** The high tariff selects the `avoid_peak` "
+        "energy action."
+    )
+else:
+    st.write(
+        f"**Tariff note:** The {tariff} tariff selects the `normal` "
+        "energy action."
+    )
+
+# New: visual cooling comparison
+st.subheader("Cooling Output Chart")
+
+cooling_chart = pd.DataFrame({
+    "Controller": list(controllers.keys()),
+    "Cooling (%)": [
+        values["Cooling (%)"] for values in controllers.values()
+    ],
+}).set_index("Controller")
+
+st.bar_chart(cooling_chart, y="Cooling (%)")
+
+# Existing: cooling differences
 st.subheader("Cooling Differences")
 
 difference_table = pd.DataFrame({
@@ -112,8 +181,14 @@ difference_table = pd.DataFrame({
         float(ga_fuzzy["cooling_pct"]) - float(baseline_cooling),
     ],
 })
-st.dataframe(difference_table, hide_index=True, use_container_width=True)
 
+st.dataframe(
+    difference_table,
+    hide_index=True,
+    use_container_width=True,
+)
+
+# Scenario input summary
 st.subheader("Scenario Inputs")
 
 input_table = pd.DataFrame({
@@ -130,10 +205,9 @@ input_table = pd.DataFrame({
         tariff,
     ],
 })
-st.dataframe(input_table, hide_index=True, use_container_width=True)
 
-st.caption(
-    "The GA-tuned controller uses saved parameters from the project's "
-    "synthetic optimization experiment. This is a simulation, not a "
-    "physical HVAC controller or evidence of measured energy savings."
+st.dataframe(
+    input_table,
+    hide_index=True,
+    use_container_width=True,
 )
