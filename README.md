@@ -410,14 +410,6 @@ The following items have been completed based on the repository artifacts and ch
 - [x] Product V2 deployed publicly and browser-tested.
 - [x] Final report, presentation, and dashboard evidence committed and pushed.
 
-Before final submission, confirm the following requirements with the official SC01 roadmap and faculty instructions:
-
-- [ ] Confirm whether additional Product V1 demonstration evidence is required.
-- [ ] Confirm whether a demonstration video, viva materials, or any other deliverable is explicitly required.
-- [ ] Check that the final submission follows the prescribed naming, format, and submission procedure.
-
-Do not claim real-world energy savings or HVAC suitability: the project uses synthetic scenarios and a heuristic optimization objective.
-
 ## 19. Limitations
 
 - Scenario data is synthetic rather than collected from real buildings.
