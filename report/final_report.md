@@ -140,6 +140,47 @@ The three-controller comparison file contains 10,000 scenario rows, excluding th
 
 The figures in `results/figures/` provide visual comparisons of cooling recommendations and fan levels. The existing figures cover five scenarios and should be presented as illustrative examples rather than visualizations of all 10,000 scenarios.
 
+### 6.4 Control-Demand Proxy and Environmental Analysis
+
+To provide additional comparative evidence, cooling commands and fan settings were analysed across the same 10,000 test scenarios for all three controllers.
+
+**Comparative control-demand indicators**
+
+| Indicator | Baseline | Fuzzy | GA-tuned fuzzy |
+|---|---:|---:|---:|
+| Mean cooling command (%) | 62.23 | 70.72 | 47.60 |
+| Mean fan-level ordinal index (0–3) | 2.074 | 2.584 | 2.373 |
+| High-fan scenarios | 2,438 (24.38%) | 6,253 (62.53%) | 4,365 (43.65%) |
+| Fan-off scenarios | 93 | 93 | 93 |
+| Avoid-peak scenarios | 2,975 | 2,975 | 2,975 |
+
+The GA-tuned fuzzy controller produced the lowest mean cooling command (47.60%). However, its mean fan-level ordinal index was higher than the baseline controller's index. The fuzzy controller also produced the highest proportion of high-fan scenarios.
+
+The fan-level index assigns ordinal values of 0, 1, 2, and 3 to off, low, medium, and high settings respectively. It is a descriptive comparison of controller outputs, not a measurement of electrical power or energy consumption.
+
+**Environmental conditions in the test dataset**
+
+| Environmental range | Number of scenarios |
+|---|---:|
+| Temperature below 24°C | 2,264 |
+| Temperature between 24°C and 30°C | 2,265 |
+| Temperature above 30°C | 5,471 |
+| Humidity below 40% | 2,458 |
+| Humidity between 40% and 60% | 2,479 |
+| Humidity above 60% | 5,063 |
+
+These distributions describe the environmental conditions represented in the synthetic test dataset. They are not thermal-comfort classifications.
+
+**Comfort and energy evaluation limitations**
+
+A validated thermal-comfort score could not be calculated from the available dataset. Methods such as PMV/PPD require additional inputs, including mean radiant temperature, air speed, clothing insulation, and metabolic rate. These measurements were not available.
+
+Similarly, actual energy consumption or energy savings in kWh could not be established because the project does not include HVAC power ratings, operating durations, equipment efficiency data, or a validated physical energy model.
+
+Therefore, cooling commands and fan settings are reported only as control-demand proxies. The lower mean cooling command of the GA-tuned fuzzy controller should not be interpreted as proof of lower total energy consumption or improved thermal comfort.
+
+Further evaluation using measured building data, validated thermal-comfort metrics, and a calibrated HVAC energy model is required before making real-world comfort or energy-saving claims.
+
 ## 7. Software Interface
 
 The interactive dashboard is implemented using Streamlit in `app/app.py`. It accepts temperature, humidity, occupancy, and tariff inputs and presents controller recommendations.
@@ -225,3 +266,16 @@ These findings demonstrate differences in simulated controller behaviour. Furthe
 - Visualizations: `results/figures/`
 - Interactive application: `app/app.py`
 - Automated tests: `src/test_step4_requirements.py`
+
+## 12. Team Member Contributions
+
+The project was completed under the leadership and primary implementation responsibility of the team leader. The responsibilities and contributions of each team member are documented below.
+
+| Team Member | Role and Contribution |
+|---|---|
+| **Vansh Sharma (Team Leader)** | Led and independently carried out the major project activities, including project planning, data preprocessing, development of the baseline and fuzzy controllers, genetic algorithm optimization, comparative evaluation, testing, result analysis, documentation, and final submission. |
+| **Manshi Tiwari** | Assigned team member. No direct technical implementation or documentation contribution was recorded during the project development period. |
+| **Lakshya Sharma** | Assigned team member. No direct technical implementation or documentation contribution was recorded during the project development period. |
+| **Akash Dubey** | Assigned team member. No direct technical implementation or documentation contribution was recorded during the project development period. |
+
+**Contribution Statement:** The project implementation, technical development, testing, evaluation, and final documentation were primarily completed independently by the team leader. The contribution details above represent the actual participation recorded during the project.

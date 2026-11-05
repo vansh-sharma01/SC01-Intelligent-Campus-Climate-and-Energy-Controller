@@ -1,0 +1,4 @@
+controller,scenarios,mean_cooling_command_pct,mean_fan_level_ordinal_0_to_3,high_fan_scenarios,high_fan_percentage,fan_off_scenarios,avoid_peak_scenarios
+Baseline,10000,62.23,2.074,2438,24.38,93,2975
+Fuzzy,10000,70.72,2.584,6253,62.53,93,2975
+GA-tuned fuzzy,10000,47.6,2.373,4365,43.65,93,2975
