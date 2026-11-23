@@ -1,0 +1,11 @@
+case_id,temperature_c,humidity_pct,occupancy_count,tariff_level,description
+NORMAL,25,55,50,medium,Interface defaults
+HOT-HUMID,38,85,80,high,Hot humid crowded room on a high tariff
+EMPTY,30,50,0,low,Empty room
+COOL,21,45,15,low,Cool lightly used room
+B01,18,55,50,medium,Boundary: temperature at lower limit
+B02,45,55,50,medium,Boundary: temperature at upper limit
+B03,25,20,50,medium,Boundary: humidity at lower limit
+B04,25,100,50,medium,Boundary: humidity at upper limit
+B05,25,55,0,medium,Boundary: occupancy at lower limit
+B06,25,55,100,medium,Boundary: occupancy at upper limit

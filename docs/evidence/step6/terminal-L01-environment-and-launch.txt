@@ -1,0 +1,20 @@
+$ git rev-parse --short HEAD
+c06d85b
+$ git branch --show-current
+step-6-testing
+$ python --version
+Python 3.11.18
+$ python -m pip list (selected)
+matplotlib                3.9.4
+numpy                     2.0.2
+pandas                    2.3.3
+streamlit                 1.50.0
+
+$ python -m streamlit run app/app.py --server.headless true --server.port 8501
+2026-11-23 08:58:01.352 Did not auto detect external IP.
+Please go to https://docs.streamlit.io/ for debugging hints.
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.0.2.2:8501

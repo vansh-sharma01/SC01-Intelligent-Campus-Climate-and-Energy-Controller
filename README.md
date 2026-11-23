@@ -543,3 +543,16 @@ The suite has 62 tests (11 existing, 39 inference-layer, 12 interface). Results 
 ### Limitations
 
 The controllers use synthetic simulation data. Recommendations are not actual HVAC commands, and there is no physical HVAC or live-sensor integration. No real electricity savings and no measured indoor comfort have been established, and the energy-action labels are tariff-driven. The campus benchmark does not validate the controllers. The tool is for educational demonstration and decision-support exploration only.
+
+## 23. Testing and Validation (Step 6)
+
+Step 6 tests the Product V1 application. The full plan, the real results, the failures found and fixed, and the known limits are in `docs/STEP-6.md`; evidence is in `docs/evidence/step6/` and `results/step6_testing/`.
+
+```bash
+python -m unittest discover -s src -p "test_*.py" -v                       # all tests (95 on this branch)
+python -m unittest discover -s src -p "test_fuzzy_rule_coverage.py" -v     # all 11 fuzzy rules, fallback, limits
+python src/make_step6_reference.py                                         # reference result from the controllers
+python src/compare_step6_predictions.py --reference results/step6_testing/reference_predictions.csv docs/evidence/step6/downloads/*.csv
+```
+
+The comparison script checks CSV files downloaded from the application against the reference: fan level and energy action exactly, cooling within 0.01. The Mac manual checks M01-M07 were completed and passed; their contemporaneous test notes and command outputs are recorded in `docs/evidence/step6/mac/`, with the full results in `docs/STEP-6.md`. Linux scripted browser checks and automated test results are also documented there. Test results describe software behaviour on synthetic data only; they do not show real energy savings or measured comfort.

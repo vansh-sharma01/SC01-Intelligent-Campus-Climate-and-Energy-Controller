@@ -1,0 +1,8 @@
+c06d85b
+step-6-testing
+Python 3.9.6
+WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+You should consider upgrading via the '/Users/vanshsharma/Desktop/SC01-Intelligent-Campus-Climate-and-Energy-Controller/.venv/bin/python -m pip install --upgrade pip' command.
+numpy                     2.0.2
+pandas                    2.3.3
+streamlit                 1.50.0

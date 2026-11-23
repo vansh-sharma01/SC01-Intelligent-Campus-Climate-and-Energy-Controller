@@ -1,0 +1,24 @@
+== BEFORE the fix (original c06d85b code + new regression tests, throwaway copy)
+$ python -m unittest discover -s src -p "test_step6_resource_messages.py" -v
+test_missing_csv_errors_show_no_local_path_and_name_the_file (test_step6_resource_messages.CsvTabMessageTests.test_missing_csv_errors_show_no_local_path_and_name_the_file) ... 2026-11-23 09:04:55.100 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+test_incomplete_parameters_say_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_incomplete_parameters_say_what_to_do) ... FAIL
+test_invalid_json_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_invalid_json_says_what_to_do) ... FAIL
+test_non_finite_parameter_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_non_finite_parameter_says_what_to_do) ... FAIL
+test_wrong_temperature_order_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_wrong_temperature_order_says_what_to_do) ... FAIL
+AssertionError: False is not true
+AssertionError: 'Restore results/step6/ga_best_params.json' not found in "Saved GA parameters in ga_best_params.json are unreadable or incomplete: KeyError('t2')"
+AssertionError: 'Restore results/step6/ga_best_params.json' not found in "Saved GA parameters in ga_best_params.json are unreadable or incomplete: JSONDecodeError('Expecting property name enclosed in double quotes: line 1 column 2 (char 1)')"
+AssertionError: 'Restore results/step6/ga_best_params.json' not found in 'ga_best_params.json contains non-finite parameters.'
+AssertionError: 'Restore results/step6/ga_best_params.json' not found in 'ga_best_params.json: temperature parameters must satisfy 18 < t1 < t2 < t3 < 45.'
+Ran 5 tests in 0.406s
+FAILED (failures=5)
+
+== AFTER the fix (this branch)
+$ python -m unittest discover -s src -p "test_step6_resource_messages.py" -v
+test_missing_csv_errors_show_no_local_path_and_name_the_file (test_step6_resource_messages.CsvTabMessageTests.test_missing_csv_errors_show_no_local_path_and_name_the_file) ... 2026-11-23 09:04:56.413 WARNING streamlit.runtime.caching.cache_data_api: No runtime found, using MemoryCacheStorageManager
+test_incomplete_parameters_say_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_incomplete_parameters_say_what_to_do) ... ok
+test_invalid_json_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_invalid_json_says_what_to_do) ... ok
+test_non_finite_parameter_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_non_finite_parameter_says_what_to_do) ... ok
+test_wrong_temperature_order_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_wrong_temperature_order_says_what_to_do) ... ok
+Ran 5 tests in 0.842s
+OK

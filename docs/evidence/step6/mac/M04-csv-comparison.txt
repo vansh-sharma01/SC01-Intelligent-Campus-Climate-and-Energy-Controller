@@ -1,0 +1,2 @@
+Files compared: 1; rows compared: 3; cooling tolerance: +/-0.01
+PASS: every downloaded row matches the reference (fan level and energy action exactly, cooling within tolerance).

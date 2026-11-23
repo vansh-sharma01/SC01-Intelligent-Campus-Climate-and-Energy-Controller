@@ -1,0 +1,161 @@
+$ python -m unittest discover -s src -p "test_*.py" -v   (Python 3.13, after the fix)
+Python 3.13.18
+test_F17_fan_thresholds_at_30_and_70 (test_fuzzy_rule_coverage.FanAndOutputLimitTests.test_F17_fan_thresholds_at_30_and_70) ... ok
+test_F18_humidity_bump_starts_at_80 (test_fuzzy_rule_coverage.FanAndOutputLimitTests.test_F18_humidity_bump_starts_at_80) ... ok
+test_F19_empty_room_gives_zero_cooling_and_fan_off (test_fuzzy_rule_coverage.FanAndOutputLimitTests.test_F19_empty_room_gives_zero_cooling_and_fan_off) ... ok
+test_F20_outputs_stay_in_range_over_the_valid_input_range (test_fuzzy_rule_coverage.FanAndOutputLimitTests.test_F20_outputs_stay_in_range_over_the_valid_input_range) ... ok
+test_F21_saved_ga_parameters_are_accepted (test_fuzzy_rule_coverage.FanAndOutputLimitTests.test_F21_saved_ga_parameters_are_accepted) ... ok
+test_F21_temperature_parameter_order_is_enforced (test_fuzzy_rule_coverage.FanAndOutputLimitTests.test_F21_temperature_parameter_order_is_enforced) ... ok
+test_F16_every_rule_strength_stays_between_0_and_1 (test_fuzzy_rule_coverage.MembershipLimitTests.test_F16_every_rule_strength_stays_between_0_and_1) ... ok
+test_F16_humidity_high_membership (test_fuzzy_rule_coverage.MembershipLimitTests.test_F16_humidity_high_membership) ... ok
+test_F16_occupancy_memberships (test_fuzzy_rule_coverage.MembershipLimitTests.test_F16_occupancy_memberships) ... ok
+test_F16_temperature_memberships_default (test_fuzzy_rule_coverage.MembershipLimitTests.test_F16_temperature_memberships_default) ... ok
+test_F12_no_dead_rule_in_the_10000_synthetic_scenarios (test_fuzzy_rule_coverage.NoDeadRuleTests.test_F12_no_dead_rule_in_the_10000_synthetic_scenarios) ...
+[10,000 scenarios, default] 9907 inputs evaluated; times each rule fired (strength > 0):
+    R01 temp low & occ low                        427
+    R02 temp low & occ medium                    1656
+    R03 temp low & occ high                       921
+    R04 temp medium & occ low                     800
+    R05 temp medium & occ medium                 3283
+    R06 temp medium & occ high                   1816
+    R07 temp high & occ low                      1017
+    R08 temp high & occ medium                   4008
+    R09 temp high & occ high                     2173
+    R10 temp medium & humidity high              1949
+    R11 temp low & humidity high & occ high       407
+ok
+test_F13_no_dead_rule_with_saved_ga_parameters (test_fuzzy_rule_coverage.NoDeadRuleTests.test_F13_no_dead_rule_with_saved_ga_parameters) ...
+[valid-range grid, saved GA parameters] 8700 inputs evaluated; times each rule fired (strength > 0):
+    R01 temp low & occ low                        720
+    R02 temp low & occ medium                    1620
+    R03 temp low & occ high                       900
+    R04 temp medium & occ low                     960
+    R05 temp medium & occ medium                 2160
+    R06 temp medium & occ high                   1200
+    R07 temp high & occ low                      1280
+    R08 temp high & occ medium                   2880
+    R09 temp high & occ high                     1600
+    R10 temp medium & humidity high              1440
+    R11 temp low & humidity high & occ high       360
+ok
+test_F13b_no_dead_rule_with_default_parameters_on_the_grid (test_fuzzy_rule_coverage.NoDeadRuleTests.test_F13b_no_dead_rule_with_default_parameters_on_the_grid) ...
+[valid-range grid, default parameters] 8700 inputs evaluated; times each rule fired (strength > 0):
+    R01 temp low & occ low                        480
+    R02 temp low & occ medium                    1080
+    R03 temp low & occ high                       600
+    R04 temp medium & occ low                     960
+    R05 temp medium & occ medium                 2160
+    R06 temp medium & occ high                   1200
+    R07 temp high & occ low                      1240
+    R08 temp high & occ medium                   2790
+    R09 temp high & occ high                     1550
+    R10 temp medium & humidity high              1440
+    R11 temp low & humidity high & occ high       240
+ok
+test_F01_rule_R01_temp_low_and_occupancy_low (test_fuzzy_rule_coverage.RuleWitnessTests.test_F01_rule_R01_temp_low_and_occupancy_low) ... ok
+test_F02_rule_R02_temp_low_and_occupancy_medium (test_fuzzy_rule_coverage.RuleWitnessTests.test_F02_rule_R02_temp_low_and_occupancy_medium) ... ok
+test_F03_rule_R03_temp_low_and_occupancy_high (test_fuzzy_rule_coverage.RuleWitnessTests.test_F03_rule_R03_temp_low_and_occupancy_high) ... ok
+test_F04_rule_R04_temp_medium_and_occupancy_low (test_fuzzy_rule_coverage.RuleWitnessTests.test_F04_rule_R04_temp_medium_and_occupancy_low) ... ok
+test_F05_rule_R05_temp_medium_and_occupancy_medium (test_fuzzy_rule_coverage.RuleWitnessTests.test_F05_rule_R05_temp_medium_and_occupancy_medium) ... ok
+test_F06_rule_R06_temp_medium_and_occupancy_high (test_fuzzy_rule_coverage.RuleWitnessTests.test_F06_rule_R06_temp_medium_and_occupancy_high) ... ok
+test_F07_rule_R07_temp_high_and_occupancy_low (test_fuzzy_rule_coverage.RuleWitnessTests.test_F07_rule_R07_temp_high_and_occupancy_low) ... ok
+test_F08_rule_R08_temp_high_and_occupancy_medium (test_fuzzy_rule_coverage.RuleWitnessTests.test_F08_rule_R08_temp_high_and_occupancy_medium) ... ok
+test_F09_rule_R09_temp_high_and_occupancy_high (test_fuzzy_rule_coverage.RuleWitnessTests.test_F09_rule_R09_temp_high_and_occupancy_high) ... ok
+test_F10_rule_R10_temp_medium_and_humidity_high (test_fuzzy_rule_coverage.RuleWitnessTests.test_F10_rule_R10_temp_medium_and_humidity_high) ... ok
+test_F11_rule_R11_temp_low_humidity_high_occupancy_high (test_fuzzy_rule_coverage.RuleWitnessTests.test_F11_rule_R11_temp_low_humidity_high_occupancy_high) ... ok
+test_F14_fallback_at_temperature_equal_to_t1_default (test_fuzzy_rule_coverage.ZeroStrengthFallbackTests.test_F14_fallback_at_temperature_equal_to_t1_default) ... ok
+test_F14_fallback_at_temperature_equal_to_t1_ga (test_fuzzy_rule_coverage.ZeroStrengthFallbackTests.test_F14_fallback_at_temperature_equal_to_t1_ga) ... ok
+test_F14_just_either_side_of_t1_is_not_a_fallback (test_fuzzy_rule_coverage.ZeroStrengthFallbackTests.test_F14_just_either_side_of_t1_is_not_a_fallback) ... ok
+test_F15_zero_strength_only_at_t1_and_high_branch_unreachable (test_fuzzy_rule_coverage.ZeroStrengthFallbackTests.test_F15_zero_strength_only_at_t1_and_high_branch_unreachable) ...
+[default] zero-strength inputs on the grid: 300, all at temperature == t1 (24.0); the 'else cool_high' fallback branch was never reached
+
+[GA] zero-strength inputs on the grid: 300, all at temperature == t1 (27.0); the 'else cool_high' fallback branch was never reached
+ok
+test_boundary_inputs_give_controller_output (test_product_v1.BoundaryTests.test_boundary_inputs_give_controller_output) ... ok
+test_every_tariff_is_accepted (test_product_v1.BoundaryTests.test_every_tariff_is_accepted) ... ok
+test_humidity_limits (test_product_v1.BoundaryTests.test_humidity_limits) ... ok
+test_occupancy_limits (test_product_v1.BoundaryTests.test_occupancy_limits) ... ok
+test_temperature_limits (test_product_v1.BoundaryTests.test_temperature_limits) ... ok
+test_baseline_layer_reproduces_step1_expected_outputs (test_product_v1.ConsistencyWithExistingControllersTests.test_baseline_layer_reproduces_step1_expected_outputs) ... ok
+test_layer_matches_direct_calls (test_product_v1.ConsistencyWithExistingControllersTests.test_layer_matches_direct_calls) ... ok
+test_layer_matches_saved_step7_evaluation_sample (test_product_v1.ConsistencyWithExistingControllersTests.test_layer_matches_saved_step7_evaluation_sample) ... ok
+test_import_failure_becomes_a_clear_controller_load_error (test_product_v1.ControllerImportFailureTests.test_import_failure_becomes_a_clear_controller_load_error) ... ok
+test_each_controller_is_selected_by_name (test_product_v1.ControllerSelectionTests.test_each_controller_is_selected_by_name) ... ok
+test_recommend_all_returns_all_three_in_order (test_product_v1.ControllerSelectionTests.test_recommend_all_returns_all_three_in_order) ... ok
+test_unknown_controller_is_rejected (test_product_v1.ControllerSelectionTests.test_unknown_controller_is_rejected) ... ok
+test_all_problems_reported_together (test_product_v1.InvalidInputTests.test_all_problems_reported_together) ... ok
+test_blank_and_none_values (test_product_v1.InvalidInputTests.test_blank_and_none_values) ... ok
+test_error_messages_name_the_field_and_valid_range (test_product_v1.InvalidInputTests.test_error_messages_name_the_field_and_valid_range) ... ok
+test_humidity_out_of_range (test_product_v1.InvalidInputTests.test_humidity_out_of_range) ... ok
+test_invalid_input_never_reaches_a_controller (test_product_v1.InvalidInputTests.test_invalid_input_never_reaches_a_controller) ... ok
+test_invalid_values_are_not_replaced_by_defaults (test_product_v1.InvalidInputTests.test_invalid_values_are_not_replaced_by_defaults) ... ok
+test_missing_keys (test_product_v1.InvalidInputTests.test_missing_keys) ... ok
+test_nan_and_infinity (test_product_v1.InvalidInputTests.test_nan_and_infinity) ... ok
+test_non_mapping_input_is_rejected (test_product_v1.InvalidInputTests.test_non_mapping_input_is_rejected) ... ok
+test_occupancy_must_be_a_whole_number (test_product_v1.InvalidInputTests.test_occupancy_must_be_a_whole_number) ... ok
+test_occupancy_out_of_range (test_product_v1.InvalidInputTests.test_occupancy_out_of_range) ... ok
+test_temperature_out_of_range (test_product_v1.InvalidInputTests.test_temperature_out_of_range) ... ok
+test_text_where_number_expected (test_product_v1.InvalidInputTests.test_text_where_number_expected) ... ok
+test_unknown_tariff (test_product_v1.InvalidInputTests.test_unknown_tariff) ... ok
+test_normal_input_is_accepted_and_cleaned (test_product_v1.NormalInputTests.test_normal_input_is_accepted_and_cleaned) ... ok
+test_numbers_and_numeric_strings_both_work (test_product_v1.NormalInputTests.test_numbers_and_numeric_strings_both_work) ... ok
+test_whitespace_and_tariff_case_are_normalised_not_guessed (test_product_v1.NormalInputTests.test_whitespace_and_tariff_case_are_normalised_not_guessed) ... ok
+test_csv_export_contains_inputs_controller_outputs_and_notice (test_product_v1.OutputSchemaTests.test_csv_export_contains_inputs_controller_outputs_and_notice) ... ok
+test_empty_room_gives_zero_cooling_and_fan_off (test_product_v1.OutputSchemaTests.test_empty_room_gives_zero_cooling_and_fan_off) ... ok
+test_high_tariff_gives_avoid_peak_and_others_normal (test_product_v1.OutputSchemaTests.test_high_tariff_gives_avoid_peak_and_others_normal) ... ok
+test_outputs_stay_valid_across_the_input_domain (test_product_v1.OutputSchemaTests.test_outputs_stay_valid_across_the_input_domain) ... ok
+test_result_schema_and_ranges (test_product_v1.OutputSchemaTests.test_result_schema_and_ranges) ... ok
+test_corrupt_incomplete_or_invalid_params_file_raises (test_product_v1.SavedGaParametersTests.test_corrupt_incomplete_or_invalid_params_file_raises) ... ok
+test_ga_controller_uses_saved_params_not_plain_fuzzy (test_product_v1.SavedGaParametersTests.test_ga_controller_uses_saved_params_not_plain_fuzzy) ... ok
+test_inference_does_not_import_or_run_the_ga_optimiser (test_product_v1.SavedGaParametersTests.test_inference_does_not_import_or_run_the_ga_optimiser) ... ok
+test_loaded_params_equal_the_saved_file (test_product_v1.SavedGaParametersTests.test_loaded_params_equal_the_saved_file) ... ok
+test_missing_params_file_raises_and_does_not_fall_back (test_product_v1.SavedGaParametersTests.test_missing_params_file_raises_and_does_not_fall_back) ... ok
+test_app_recovers_after_correction (test_product_v1_app.AppInterfaceTests.test_app_recovers_after_correction) ... 2026-11-23 09:08:21.063 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_boundary_inputs_return_results (test_product_v1_app.AppInterfaceTests.test_boundary_inputs_return_results) ... 2026-11-23 09:08:21.532 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_compare_mode_shows_all_three_for_identical_inputs (test_product_v1_app.AppInterfaceTests.test_compare_mode_shows_all_three_for_identical_inputs) ... 2026-11-23 09:08:21.991 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_consistency_expander_reports_matches (test_product_v1_app.AppInterfaceTests.test_consistency_expander_reports_matches) ... 2026-11-23 09:08:22.163 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_csv_download_is_offered_after_a_result (test_product_v1_app.AppInterfaceTests.test_csv_download_is_offered_after_a_result) ... 2026-11-23 09:08:22.344 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_empty_room_shows_off_fan (test_product_v1_app.AppInterfaceTests.test_empty_room_shows_off_fan) ... 2026-11-23 09:08:22.466 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_fuzzy_and_ga_submission_match_direct_calls (test_product_v1_app.AppInterfaceTests.test_fuzzy_and_ga_submission_match_direct_calls) ... 2026-11-23 09:08:22.601 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_invalid_inputs_show_field_errors_and_no_recommendation (test_product_v1_app.AppInterfaceTests.test_invalid_inputs_show_field_errors_and_no_recommendation) ... 2026-11-23 09:08:22.869 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_invalid_submission_replaces_an_earlier_result (test_product_v1_app.AppInterfaceTests.test_invalid_submission_replaces_an_earlier_result) ... 2026-11-23 09:08:23.492 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_missing_ga_file_shows_clear_error_not_traceback (test_product_v1_app.AppInterfaceTests.test_missing_ga_file_shows_clear_error_not_traceback) ... 2026-11-23 09:08:23.700 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_page_loads_with_notice_form_and_sections (test_product_v1_app.AppInterfaceTests.test_page_loads_with_notice_form_and_sections) ... 2026-11-23 09:08:24.006 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_valid_submission_matches_direct_baseline_call (test_product_v1_app.AppInterfaceTests.test_valid_submission_matches_direct_baseline_call) ... 2026-11-23 09:08:24.073 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_baseline_zero_occupancy_turns_cooling_and_fan_off (test_step4_requirements.Step4RequirementsTests.test_baseline_zero_occupancy_turns_cooling_and_fan_off) ... ok
+test_duplicate_scenario_ids_are_rejected (test_step4_requirements.Step4RequirementsTests.test_duplicate_scenario_ids_are_rejected) ... ok
+test_fuzzy_outputs_stay_within_defined_ranges (test_step4_requirements.Step4RequirementsTests.test_fuzzy_outputs_stay_within_defined_ranges) ... ok
+test_high_tariff_triggers_avoid_peak_for_both_controllers (test_step4_requirements.Step4RequirementsTests.test_high_tariff_triggers_avoid_peak_for_both_controllers) ... ok
+test_invalid_humidity_is_rejected (test_step4_requirements.Step4RequirementsTests.test_invalid_humidity_is_rejected) ... ok
+test_invalid_tariff_is_rejected (test_step4_requirements.Step4RequirementsTests.test_invalid_tariff_is_rejected) ... ok
+test_invalid_temperature_is_rejected (test_step4_requirements.Step4RequirementsTests.test_invalid_temperature_is_rejected) ... ok
+test_missing_input_is_rejected (test_step4_requirements.Step4RequirementsTests.test_missing_input_is_rejected) ... ok
+test_negative_occupancy_is_rejected (test_step4_requirements.Step4RequirementsTests.test_negative_occupancy_is_rejected) ... ok
+test_non_numeric_temperature_is_rejected (test_step4_requirements.Step4RequirementsTests.test_non_numeric_temperature_is_rejected) ... ok
+test_valid_boundary_inputs_are_accepted (test_step4_requirements.Step4RequirementsTests.test_valid_boundary_inputs_are_accepted) ... ok
+test_missing_csv_errors_show_no_local_path_and_name_the_file (test_step6_resource_messages.CsvTabMessageTests.test_missing_csv_errors_show_no_local_path_and_name_the_file) ... 2026-11-23 09:08:24.258 No runtime found, using MemoryCacheStorageManager
+2026-11-23 09:08:24.259 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-11-23 09:08:24.284 No runtime found, using MemoryCacheStorageManager
+ok
+test_incomplete_parameters_say_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_incomplete_parameters_say_what_to_do) ... ok
+test_invalid_json_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_invalid_json_says_what_to_do) ... ok
+test_non_finite_parameter_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_non_finite_parameter_says_what_to_do) ... ok
+test_wrong_temperature_order_says_what_to_do (test_step6_resource_messages.GaFileMessageTests.test_wrong_temperature_order_says_what_to_do) ... ok
+
+----------------------------------------------------------------------
+Ran 95 tests in 5.065s
+
+OK
+exit code: 0

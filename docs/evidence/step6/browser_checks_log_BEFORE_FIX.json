@@ -1,0 +1,794 @@
+{
+  "summary": {
+    "passed": 34,
+    "failed": [],
+    "total_rows": 34
+  },
+  "rows": [
+    {
+      "id": "L01",
+      "action": "open the app in Chrome",
+      "expected": "title, 'Simulation only' warning, four tabs, no traceback",
+      "observed": {
+        "title_visible": true,
+        "simulation_warning": "Simulation only. This tool uses controllers built on synthetic scenarios. Recommendations are not HVAC commands, and no real electricity savings or indoor-comfort improvements have been measured.",
+        "tabs": [
+          "Recommendation",
+          "Evaluation results (synthetic)",
+          "Campus energy benchmark",
+          "About & limitations"
+        ],
+        "traceback_shown": false,
+        "browser": "153.0.8010.12"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N01",
+      "action": "Baseline: defaults",
+      "expected": [
+        "50.00 %",
+        "Medium",
+        "Normal"
+      ],
+      "observed": {
+        "metrics": [
+          "50.00 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N02",
+      "action": "Fuzzy: defaults",
+      "expected": [
+        "55.00 %",
+        "Medium",
+        "Normal"
+      ],
+      "observed": {
+        "metrics": [
+          "55.00 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N03",
+      "action": "GA-optimised Fuzzy: defaults",
+      "expected": [
+        "31.41 %",
+        "Medium",
+        "Normal"
+      ],
+      "observed": {
+        "metrics": [
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N04",
+      "action": "NORMAL, Compare all three",
+      "expected": "three results equal to N01-N03",
+      "observed": {
+        "metrics": [
+          "50.00 %",
+          "Medium",
+          "Normal",
+          "55.00 %",
+          "Medium",
+          "Normal",
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N05",
+      "action": "press 'Download this result as CSV' after N04",
+      "expected": "sc01_product_v1_recommendation.csv; documented header; 3 rows equal to the screen; notice present",
+      "observed": {
+        "suggested_filename": "sc01_product_v1_recommendation.csv",
+        "header": "controller,temperature_c,humidity_pct,occupancy_count,tariff_level,cooling_pct,fan_level,energy_action,notice",
+        "controllers": [
+          "baseline",
+          "fuzzy",
+          "ga_fuzzy"
+        ],
+        "cooling_in_file": [
+          "50.00 %",
+          "55.00 %",
+          "31.41 %"
+        ],
+        "cooling_on_screen": [
+          "50.00 %",
+          "55.00 %",
+          "31.41 %"
+        ],
+        "notice_present": true,
+        "saved_as": "N05_NORMAL_compare.csv"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N06",
+      "action": "HOT-HUMID 38/85/80/high, Compare all three + CSV",
+      "expected": "Baseline 90/High/Avoid Peak; Fuzzy 90/High/Avoid Peak; GA 31.41-72.09/High/Avoid Peak",
+      "observed": {
+        "metrics": [
+          "90.00 %",
+          "High",
+          "Avoid Peak",
+          "90.00 %",
+          "High",
+          "Avoid Peak",
+          "68.17 %",
+          "High",
+          "Avoid Peak"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N07",
+      "action": "EMPTY 30/50/0/low, Compare all three + CSV",
+      "expected": "all three 0.00 % / Off / Normal",
+      "observed": {
+        "metrics": [
+          "0.00 %",
+          "Off",
+          "Normal",
+          "0.00 %",
+          "Off",
+          "Normal",
+          "0.00 %",
+          "Off",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N08",
+      "action": "COOL 21/45/15/low, Compare all three + CSV",
+      "expected": "Baseline 10/Low/Normal; Fuzzy ~28.33/Low/Normal; GA ~15.99/Low/Normal (+/-0.01)",
+      "observed": {
+        "metrics": [
+          "10.00 %",
+          "Low",
+          "Normal",
+          "28.33 %",
+          "Low",
+          "Normal",
+          "15.99 %",
+          "Low",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "N09",
+      "action": "Baseline, NORMAL with tariff Low / Medium / High",
+      "expected": "energy action Normal, Normal, Avoid Peak; cooling and fan unchanged",
+      "observed": {
+        "Low": [
+          "50.00 %",
+          "Medium",
+          "Normal"
+        ],
+        "Medium": [
+          "50.00 %",
+          "Medium",
+          "Normal"
+        ],
+        "High": [
+          "50.00 %",
+          "Medium",
+          "Avoid Peak"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "B01",
+      "action": "boundary {'temp': '18'}, Compare all three + CSV",
+      "expected": [
+        [
+          "10.00 %",
+          "Low",
+          "Normal"
+        ],
+        [
+          "55.00 %",
+          "Medium",
+          "Normal"
+        ],
+        [
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ]
+      ],
+      "observed": {
+        "metrics": [
+          "10.00 %",
+          "Low",
+          "Normal",
+          "55.00 %",
+          "Medium",
+          "Normal",
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "B02",
+      "action": "boundary {'temp': '45'}, Compare all three + CSV",
+      "expected": [
+        [
+          "90.00 %",
+          "Medium",
+          "Normal"
+        ],
+        [
+          "90.00 %",
+          "High",
+          "Normal"
+        ],
+        [
+          "72.09 %",
+          "High",
+          "Normal"
+        ]
+      ],
+      "observed": {
+        "metrics": [
+          "90.00 %",
+          "Medium",
+          "Normal",
+          "90.00 %",
+          "High",
+          "Normal",
+          "72.09 %",
+          "High",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "B03",
+      "action": "boundary {'hum': '20'}, Compare all three + CSV",
+      "expected": [
+        [
+          "50.00 %",
+          "Medium",
+          "Normal"
+        ],
+        [
+          "55.00 %",
+          "Medium",
+          "Normal"
+        ],
+        [
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ]
+      ],
+      "observed": {
+        "metrics": [
+          "50.00 %",
+          "Medium",
+          "Normal",
+          "55.00 %",
+          "Medium",
+          "Normal",
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "B04",
+      "action": "boundary {'hum': '100'}, Compare all three + CSV",
+      "expected": [
+        [
+          "50.00 %",
+          "High",
+          "Normal"
+        ],
+        [
+          "72.50 %",
+          "High",
+          "Normal"
+        ],
+        [
+          "31.41 %",
+          "High",
+          "Normal"
+        ]
+      ],
+      "observed": {
+        "metrics": [
+          "50.00 %",
+          "High",
+          "Normal",
+          "72.50 %",
+          "High",
+          "Normal",
+          "31.41 %",
+          "High",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "B05",
+      "action": "boundary {'occ': '0'}, Compare all three + CSV",
+      "expected": [
+        [
+          "0.00 %",
+          "Off",
+          "Normal"
+        ],
+        [
+          "0.00 %",
+          "Off",
+          "Normal"
+        ],
+        [
+          "0.00 %",
+          "Off",
+          "Normal"
+        ]
+      ],
+      "observed": {
+        "metrics": [
+          "0.00 %",
+          "Off",
+          "Normal",
+          "0.00 %",
+          "Off",
+          "Normal",
+          "0.00 %",
+          "Off",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "B06",
+      "action": "boundary {'occ': '100'}, Compare all three + CSV",
+      "expected": [
+        [
+          "50.00 %",
+          "Medium",
+          "Normal"
+        ],
+        [
+          "90.00 %",
+          "High",
+          "Normal"
+        ],
+        [
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ]
+      ],
+      "observed": {
+        "metrics": [
+          "50.00 %",
+          "Medium",
+          "Normal",
+          "90.00 %",
+          "High",
+          "Normal",
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I01",
+      "action": "Baseline with {'temp': '46'}",
+      "expected": "error mentioning ['Temperature', '18-45']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: 46 °C is outside the valid range 18-45 °C."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I02",
+      "action": "Baseline with {'temp': '17'}",
+      "expected": "error mentioning ['Temperature', '18-45']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: 17 °C is outside the valid range 18-45 °C."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I03",
+      "action": "Baseline with {'temp': '45.01'}",
+      "expected": "error mentioning ['Temperature', '18-45']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: 45.01 °C is outside the valid range 18-45 °C."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I04",
+      "action": "Baseline with {'temp': '17.99'}",
+      "expected": "error mentioning ['Temperature', '18-45']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: 17.99 °C is outside the valid range 18-45 °C."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I05",
+      "action": "Baseline with {'hum': '101'}",
+      "expected": "error mentioning ['Humidity', '20-100']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Humidity: 101 % is outside the valid range 20-100 %."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I06",
+      "action": "Baseline with {'hum': '19'}",
+      "expected": "error mentioning ['Humidity', '20-100']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Humidity: 19 % is outside the valid range 20-100 %."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I07",
+      "action": "Baseline with {'occ': '-1'}",
+      "expected": "error mentioning ['Occupancy', '0-100']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Occupancy: -1 people is outside the valid range 0-100 people."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I08",
+      "action": "Baseline with {'occ': '101'}",
+      "expected": "error mentioning ['Occupancy', '0-100']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Occupancy: 101 people is outside the valid range 0-100 people."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I09",
+      "action": "Baseline with {'occ': '20.5'}",
+      "expected": "error mentioning ['Occupancy', 'whole number']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Occupancy: enter a whole number of people."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I10",
+      "action": "Baseline with {'temp': 'abc'}",
+      "expected": "error mentioning ['Temperature', 'enter a number']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: enter a number."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I11",
+      "action": "Baseline with {'occ': 'many'}",
+      "expected": "error mentioning ['Occupancy', 'enter a number']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Occupancy: enter a number."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I12",
+      "action": "Baseline with {'hum': ''}",
+      "expected": "error mentioning ['Humidity', 'enter a value']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Humidity: enter a value (20-100 %)."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I13",
+      "action": "Baseline with {'temp': ''}",
+      "expected": "error mentioning ['Temperature', 'enter a value']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: enter a value (18-45 °C)."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I14",
+      "action": "Baseline with {'temp': 'nan'}",
+      "expected": "error mentioning ['Temperature', 'finite']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: use a finite number (not NaN or infinity)."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I15",
+      "action": "Baseline with {'occ': 'inf'}",
+      "expected": "error mentioning ['Occupancy', 'finite']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Occupancy: use a finite number (not NaN or infinity)."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I16",
+      "action": "Baseline with {'temp': 'abc', 'hum': '200', 'occ': '-5'}",
+      "expected": "error mentioning ['Temperature', 'Humidity', 'Occupancy']; no result, no CSV, no traceback",
+      "observed": {
+        "metrics": [],
+        "errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ],
+        "field_messages": [
+          "Temperature: enter a number.",
+          "Humidity: 200 % is outside the valid range 20-100 %.",
+          "Occupancy: -5 people is outside the valid range 0-100 people."
+        ],
+        "download_button_shown": false,
+        "traceback_shown": false
+      },
+      "result": "PASS",
+      "field_message_count": 3
+    },
+    {
+      "id": "I17",
+      "action": "valid result, then invalid submit (temperature 46)",
+      "expected": "old result and CSV button removed; only the error shown",
+      "observed": {
+        "before": [
+          "50.00 %",
+          "Medium",
+          "Normal"
+        ],
+        "after_metrics": [],
+        "after_download_button": false,
+        "after_errors": [
+          "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "I18",
+      "action": "correct the value and submit again",
+      "expected": "error gone; 50.00 % / Medium / Normal",
+      "observed": {
+        "metrics": [
+          "50.00 %",
+          "Medium",
+          "Normal"
+        ],
+        "errors": [],
+        "field_messages": [],
+        "download_button_shown": true,
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "extra",
+      "action": "open the other three tabs",
+      "observed": [
+        {
+          "tab": "Evaluation results (synthetic)",
+          "traceback_shown": false
+        },
+        {
+          "tab": "Campus energy benchmark",
+          "traceback_shown": false
+        },
+        {
+          "tab": "About & limitations",
+          "traceback_shown": false
+        }
+      ]
+    }
+  ]
+}

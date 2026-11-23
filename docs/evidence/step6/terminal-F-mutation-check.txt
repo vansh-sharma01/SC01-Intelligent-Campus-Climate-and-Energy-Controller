@@ -1,0 +1,30 @@
+Deliberate-fault check of src/test_fuzzy_rule_coverage.py
+Run in a THROWAWAY copy (git archive of c06d85b + the new test file), never in the real repository.
+
+== 0. unmodified copy
+Ran 28 tests in 1.677s
+OK
+
+== 1. fault: rule R03 can never fire (weight forced to 0)
+FAIL: test_F12_no_dead_rule_in_the_10000_synthetic_scenarios
+FAIL: test_F13_no_dead_rule_with_saved_ga_parameters
+FAIL: test_F13b_no_dead_rule_with_default_parameters_on_the_grid
+FAIL: test_F03_rule_R03_temp_low_and_occupancy_high
+FAIL: test_F15_zero_strength_only_at_t1_and_high_branch_unreachable
+Ran 28 tests in 1.862s
+FAILED (failures=5)
+
+== 2. fault: fan 'medium' upper threshold moved 70 -> 75
+FAIL: test_F17_fan_thresholds_at_30_and_70
+Ran 28 tests in 1.683s
+FAILED (failures=1)
+
+== 3. fault: humidity fan bump moved 80 -> 85
+FAIL: test_F18_humidity_bump_starts_at_80
+FAIL: test_F18_humidity_bump_starts_at_80
+Ran 28 tests in 1.875s
+FAILED (failures=2)
+
+== 4. restored copy
+Ran 28 tests in 1.991s
+OK

@@ -1,0 +1,16 @@
+$ python src/compare_step6_predictions.py --reference results/step6_testing/reference_predictions.csv altered/A_fan_changed.csv
+Files compared: 1; rows compared: 3; cooling tolerance: +/-0.01
+DIFFERENCES FOUND (1):
+ - A_fan_changed.csv row 1 (baseline, 38.0/85.0/80/high): fan_level 'low' != reference 'high'
+exit code: 1
+
+$ python src/compare_step6_predictions.py --reference results/step6_testing/reference_predictions.csv altered/B_cooling_0.5.csv
+Files compared: 1; rows compared: 3; cooling tolerance: +/-0.01
+DIFFERENCES FOUND (1):
+ - B_cooling_0.5.csv row 2 (fuzzy, 38.0/85.0/80/high): cooling_pct 89.5 differs from reference 90.0 by 0.5000 (tolerance 0.01)
+exit code: 1
+
+$ python src/compare_step6_predictions.py --reference results/step6_testing/reference_predictions.csv altered/C_cooling_0.005.csv
+Files compared: 1; rows compared: 3; cooling tolerance: +/-0.01
+PASS: every downloaded row matches the reference (fan level and energy action exactly, cooling within tolerance).
+exit code: 0
