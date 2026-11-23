@@ -432,3 +432,48 @@ Do not claim real-world energy savings or HVAC suitability: the project uses syn
 This project demonstrates a reproducible simulation workflow for comparing rule-based, fuzzy-inference, and genetic-algorithm-tuned fuzzy controllers. It includes data preparation, validation, optimization, comparison, evaluation, and an interactive interface.
 
 The results should be interpreted within the limits of the synthetic dataset and stated optimization objective. Final project completion depends on verification of the official roadmap, testing requirements, and submission evidence.
+
+## 21. Real-World Campus Energy Benchmark
+
+To provide institutional energy context for the project, a separate campus-level energy benchmark from Galgotias University has been included.
+
+### Data coverage
+
+The benchmark covers three academic years:
+
+| Academic year | Electricity consumed (kWh) | Renewable capacity (kWp) | Renewable generation (kWh) | Built-up area (sq. ft.) |
+|---|---:|---:|---:|---:|
+| 2022-23 | 5,464,721 | 40 | 46,481 | 741,668 |
+| 2023-24 | 6,196,605 | 60 | 75,055 | 741,668 |
+| 2024-25 | 6,929,172 | 200 | 205,052 | 1,091,668 |
+
+### Observations
+
+- Total electricity consumption increased by approximately 26.8% between 2022-23 and 2024-25.
+- Renewable energy generation increased by approximately 341.1% over the same period.
+- Renewable generation as a percentage of electricity consumption increased from 0.851% to 2.959%.
+- Electricity consumption per square foot decreased from 7.368 to 6.347 kWh.
+
+### Dataset location
+
+`data/external/galgotias/campus_energy_benchmark.csv`
+
+Supporting documentation:
+
+`data/external/galgotias/README.md`
+
+### Primary source
+
+Galgotias University, NIRF 2026 submission:
+
+https://www.galgotiasuniversity.edu.in/public/uploads/media/hPCbMYYPBCpGctNFiHjaDSfa0wPYd5Vbh3ihvSc6.pdf
+
+### Scope and limitations
+
+- The benchmark represents institution-wide energy consumption and renewable generation.
+- It does not provide classroom-level or HVAC-specific electricity measurements.
+- It is used as real-world institutional context, not as direct input to the synthetic controller experiments.
+- It does not establish actual energy savings or validate SC01 controller performance.
+- The three-controller comparison continues to use the project's 10,000 synthetic scenarios.
+
+The real-world benchmark and simulated controller evaluation are maintained as separate evidence sources to preserve transparency and reproducibility.

@@ -1,0 +1,4 @@
+academic_year,total_electricity_consumed_kwh,renewable_capacity_kwp,renewable_energy_generated_kwh,built_up_area_sq_ft,electricity_consumption_kwh_per_sq_ft,renewable_generation_pct_of_electricity_consumption
+2022-23,5464721,40,46481,741668,7.368,0.851
+2023-24,6196605,60,75055,741668,8.355,1.211
+2024-25,6929172,200,205052,1091668,6.347,2.959
