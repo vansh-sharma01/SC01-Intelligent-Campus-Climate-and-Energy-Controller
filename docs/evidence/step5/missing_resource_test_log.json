@@ -1,0 +1,27 @@
+{
+  "GA-optimised Fuzzy (file missing)": {
+    "metrics": [],
+    "alerts": [
+      "A controller could not be loaded: Saved GA parameters not found: results/step6/ga_best_params.json. Restore results/step6/ga_best_params.json (do not re-run the GA here).",
+      "Check that the repository files are complete (see the README) and run the app from the repository root."
+    ],
+    "traceback_shown": false
+  },
+  "Compare all three (file missing)": {
+    "metrics": [],
+    "alerts": [
+      "A controller could not be loaded: Saved GA parameters not found: results/step6/ga_best_params.json. Restore results/step6/ga_best_params.json (do not re-run the GA here).",
+      "Check that the repository files are complete (see the README) and run the app from the repository root."
+    ],
+    "traceback_shown": false
+  },
+  "Baseline (file missing)": {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "traceback_shown": false
+  }
+}

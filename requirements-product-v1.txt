@@ -1,0 +1,5 @@
+# SC01 Product V1 dependencies.
+# Product V1 needs no package beyond the project's existing pinned set:
+# streamlit==1.50.0 (interface) is already in requirements.txt, and the
+# controllers use only pandas and numpy from the same file.
+-r requirements.txt

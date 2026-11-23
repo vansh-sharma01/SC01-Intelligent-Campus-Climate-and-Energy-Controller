@@ -1,0 +1,380 @@
+[
+  {
+    "case": "page load",
+    "title_visible": true,
+    "browser": "153.0.8010.12"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Normal, Baseline",
+    "inputs_changed": "defaults",
+    "button": "Generate Recommendation",
+    "expected": "3 outputs shown, no error"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal",
+      "55.00 %",
+      "Medium",
+      "Normal",
+      "31.41 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Normal, compare all three",
+    "inputs_changed": "defaults",
+    "button": "Compare Controllers",
+    "expected": "9 outputs (3 controllers)"
+  },
+  {
+    "case": "CSV download",
+    "filename": "sc01_product_v1_recommendation.csv",
+    "saved_as": "downloaded_sc01_product_v1_recommendation.csv"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Temperature: 46 °C is outside the valid range 18-45 °C."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Temperature 46",
+    "inputs_changed": {
+      "Temperature (°C)": "46"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Temperature: 17 °C is outside the valid range 18-45 °C."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Temperature 17",
+    "inputs_changed": {
+      "Temperature (°C)": "17"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Humidity: 101 % is outside the valid range 20-100 %."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Humidity 101",
+    "inputs_changed": {
+      "Relative humidity (%)": "101"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Humidity: 19 % is outside the valid range 20-100 %."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Humidity 19",
+    "inputs_changed": {
+      "Relative humidity (%)": "19"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Occupancy: -1 people is outside the valid range 0-100 people."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Occupancy -1",
+    "inputs_changed": {
+      "Occupancy (people in room)": "-1"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Occupancy: 101 people is outside the valid range 0-100 people."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Occupancy 101",
+    "inputs_changed": {
+      "Occupancy (people in room)": "101"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Occupancy: enter a whole number of people."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Occupancy 20.5",
+    "inputs_changed": {
+      "Occupancy (people in room)": "20.5"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Temperature: enter a number."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Temperature text 'abc'",
+    "inputs_changed": {
+      "Temperature (°C)": "abc"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Humidity: enter a value (20-100 %)."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Humidity blank",
+    "inputs_changed": {
+      "Relative humidity (%)": ""
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Temperature: use a finite number (not NaN or infinity)."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Temperature 'nan'",
+    "inputs_changed": {
+      "Temperature (°C)": "nan"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [],
+    "alerts": [
+      "No recommendation was produced because some inputs are invalid. Please correct them and try again:"
+    ],
+    "bullets": [
+      "Occupancy: use a finite number (not NaN or infinity)."
+    ],
+    "traceback_shown": false,
+    "case": "Invalid: Occupancy 'inf'",
+    "inputs_changed": {
+      "Occupancy (people in room)": "inf"
+    },
+    "button": "Generate Recommendation",
+    "expected": "error message, no recommendation"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Recovery after correction (defaults)",
+    "inputs_changed": "defaults",
+    "button": "Generate Recommendation",
+    "expected": "recommendation returns"
+  },
+  {
+    "metrics": [
+      "10.00 %",
+      "Low",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Boundary: Temperature 18",
+    "inputs_changed": {
+      "Temperature (°C)": "18"
+    },
+    "button": "Generate Recommendation",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "90.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Boundary: Temperature 45",
+    "inputs_changed": {
+      "Temperature (°C)": "45"
+    },
+    "button": "Generate Recommendation",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Boundary: Humidity 20",
+    "inputs_changed": {
+      "Relative humidity (%)": "20"
+    },
+    "button": "Generate Recommendation",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "High",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Boundary: Humidity 100",
+    "inputs_changed": {
+      "Relative humidity (%)": "100"
+    },
+    "button": "Generate Recommendation",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "0.00 %",
+      "Off",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Boundary: Occupancy 0",
+    "inputs_changed": {
+      "Occupancy (people in room)": "0"
+    },
+    "button": "Generate Recommendation",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Boundary: Occupancy 100",
+    "inputs_changed": {
+      "Occupancy (people in room)": "100"
+    },
+    "button": "Generate Recommendation",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Tariff Low",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Normal"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Tariff Medium",
+    "expected": "valid result"
+  },
+  {
+    "metrics": [
+      "50.00 %",
+      "Medium",
+      "Avoid Peak"
+    ],
+    "alerts": [],
+    "bullets": [],
+    "traceback_shown": false,
+    "case": "Tariff High",
+    "expected": "valid result"
+  },
+  {
+    "case": "Tab opened: Evaluation results (synthetic)",
+    "traceback_shown": false
+  },
+  {
+    "case": "Tab opened: Campus energy benchmark",
+    "traceback_shown": false
+  },
+  {
+    "case": "Tab opened: About & limitations",
+    "traceback_shown": false
+  }
+]

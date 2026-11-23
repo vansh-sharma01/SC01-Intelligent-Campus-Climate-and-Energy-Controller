@@ -1,0 +1,21 @@
+{
+  "python": "3.9.6",
+  "pandas": "2.3.3",
+  "numpy": "2.0.2",
+  "part_a_layer_vs_direct": {
+    "comparisons": 45,
+    "matches": 45,
+    "passed": true
+  },
+  "part_b_layer_vs_saved_step7_evaluation": {
+    "scenarios": 10000,
+    "comparisons": 30000,
+    "exact": 30000,
+    "within_0.01_cooling": 0,
+    "category_mismatches": 0,
+    "max_cooling_difference": 0.0,
+    "cooling_rounding_differences": [],
+    "passed": true
+  },
+  "scope": "Checks interface wiring only; not controller quality, energy savings or comfort."
+}
