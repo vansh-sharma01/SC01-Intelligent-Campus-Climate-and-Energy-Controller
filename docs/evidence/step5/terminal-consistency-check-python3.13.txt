@@ -1,0 +1,6 @@
+$ python src/check_product_consistency.py   (Python 3.13)
+Python 3.13.18 | pandas 2.3.3 | numpy 2.0.2
+Part A  layer vs direct controllers : 45/45 match -> PASS
+Part B  layer vs saved Step 7 file  : 30000 comparisons, 29999 exact, 1 differ by <=0.01 cooling, 0 fan/action mismatches -> PASS
+   rounding difference: SC07972/fuzzy: layer 85.62 vs saved 85.63
+Saved: results/product_v1/consistency_cases.csv, consistency_summary.json

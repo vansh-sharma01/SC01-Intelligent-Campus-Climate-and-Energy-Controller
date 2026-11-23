@@ -477,3 +477,69 @@ https://www.galgotiasuniversity.edu.in/public/uploads/media/hPCbMYYPBCpGctNFiHja
 - The three-controller comparison continues to use the project's 10,000 synthetic scenarios.
 
 The real-world benchmark and simulated controller evaluation are maintained as separate evidence sources to preserve transparency and reproducibility.
+
+## 22. Product V1 (Step 5)
+
+Product V1 turns the dashboard into a validated, tested input-to-output application. Full report with test evidence: docs/STEP-5.md. Development branch: step-5-product-v1.
+
+**Keep these three things separate:**
+
+| Evidence | What it is |
+|---|---|
+| Synthetic controller evaluation | Saved results of the 10,000 generated scenarios (`results/step7/`). Historical; not produced by the interface. |
+| Interactive recommendations | What a user gets from the app for one entered room scenario. Simulated; not an HVAC command. |
+| Galgotias campus energy benchmark | External, institution-wide context (`data/external/galgotias/`). Not a controller input and not a validation of the controllers. |
+
+### Features
+
+- Room input form with units and valid ranges beside each field.
+- Choice of Baseline, Fuzzy or GA-optimised Fuzzy, or comparison of all three on identical inputs.
+- Validation in the inference layer (`src/product_inference.py`): blank, text, NaN, infinity, out-of-range, non-integer occupancy and unknown tariff are rejected with field-specific messages; invalid values are never replaced by defaults.
+- Results use the existing controllers and the saved GA parameters (`results/step6/ga_best_params.json`); nothing is trained or re-optimised in the app.
+- Live "interface vs direct controller call" consistency check, and CSV download of the submitted inputs, outputs and limitation notice.
+- Separate tabs for the saved evaluation results, the campus benchmark, and limitations.
+
+### Inputs and outputs
+
+| Input | Unit | Valid values |
+|---|---|---|
+| Temperature | °C | 18-45 |
+| Relative humidity | % | 20-100 |
+| Occupancy | people (whole number) | 0-100 |
+| Electricity tariff | category | low, medium, high |
+
+| Output | Values |
+|---|---|
+| Cooling recommendation | 0-100 % (simulated control demand, not measured consumption) |
+| Fan level | off, low, medium, high |
+| Energy action | normal, avoid_peak (`save` is defined but never produced) |
+
+### Setup and launch
+
+Run from the repository root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-product-v1.txt
+python -m streamlit run app/app.py
+```
+
+Open http://localhost:8501 and stop the app with `Ctrl+C`. Tested with Python 3.11.18 and 3.13.18, Streamlit 1.50.0, pandas 2.3.3, numpy 2.0.2.
+
+### Testing
+
+```bash
+python -m unittest discover -s src -p "test_*.py" -v
+python src/check_product_consistency.py
+```
+
+The suite has 62 tests (11 existing, 39 inference-layer, 12 interface). Results and consistency checks are recorded in `docs/STEP-5.md`. Note: on Python 3.12+ one fuzzy cooling value (scenario SC07972) rounds to 85.62 instead of 85.63; see the report.
+
+### Screenshots
+
+[Overview](docs/evidence/step5/01-home-overview.png) · [Input form](docs/evidence/step5/02-input-form.png) · [Recommendation](docs/evidence/step5/03-recommendation-baseline.png) · [Controller comparison](docs/evidence/step5/04-controller-comparison.png) · [Invalid input](docs/evidence/step5/05-invalid-temperature-46.png) · [Boundary](docs/evidence/step5/06-boundary-temperature-45.png) · [Evaluation tab](docs/evidence/step5/08-evaluation-tab.png) · [Campus benchmark tab](docs/evidence/step5/09-campus-benchmark-tab.png) · [Missing-resource handling](docs/evidence/step5/11-missing-ga-parameters.png)
+
+### Limitations
+
+The controllers use synthetic simulation data. Recommendations are not actual HVAC commands, and there is no physical HVAC or live-sensor integration. No real electricity savings and no measured indoor comfort have been established, and the energy-action labels are tariff-driven. The campus benchmark does not validate the controllers. The tool is for educational demonstration and decision-support exploration only.
