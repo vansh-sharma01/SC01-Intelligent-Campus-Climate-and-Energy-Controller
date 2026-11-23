@@ -1,0 +1,10 @@
+R01    PASS  GA file missing; GA-optimised Fuzzy, NORMAL
+R02    PASS  GA file missing; Compare all three
+R03    PASS  GA file missing; Baseline and Fuzzy
+R04    PASS  restore the GA file (no restart); GA-optimised Fuzzy
+X01    observed (extra) ['31.41 %', 'Medium', 'Normal'] []
+R05    FAIL  GA file contains invalid JSON; GA-optimised Fuzzy
+R06    PASS  restore valid GA file (no restart)
+R07    FAIL  remove results/step7/three_controller_comparison.csv; open 'Evaluation results (synthetic)', then Recommendation
+R08    FAIL  remove data/external/galgotias/campus_energy_benchmark.csv; open 'Campus energy benchmark', then Recommendation
+{"passed": 5, "failed": ["R05", "R07", "R08"], "total_rows": 8}

@@ -1,0 +1,9 @@
+2026-11-23 09:07:51.458 Did not auto detect external IP.
+Please go to https://docs.streamlit.io/ for debugging hints.
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8502
+  Network URL: http://192.0.2.2:8502
+
+  Stopping...

@@ -1,0 +1,4 @@
+controller,temperature_c,humidity_pct,occupancy_count,tariff_level,cooling_pct,fan_level,energy_action,notice
+baseline,25.0,100.0,50,medium,50.0,high,normal,Simulated recommendation from controllers built on synthetic data. Not an HVAC command; no real energy savings or indoor comfort have been measured.
+fuzzy,25.0,100.0,50,medium,72.5,high,normal,Simulated recommendation from controllers built on synthetic data. Not an HVAC command; no real energy savings or indoor comfort have been measured.
+ga_fuzzy,25.0,100.0,50,medium,31.41,high,normal,Simulated recommendation from controllers built on synthetic data. Not an HVAC command; no real energy savings or indoor comfort have been measured.

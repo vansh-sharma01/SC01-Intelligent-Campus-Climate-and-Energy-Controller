@@ -219,6 +219,12 @@ def _load_controller_functions():
     return baseline_controller, fuzzy_controller
 
 
+_GA_RESTORE_HINT = (
+    "Restore results/step6/ga_best_params.json from the repository "
+    "(do not re-run the GA here)."
+)
+
+
 def load_ga_params(path=None):
     """Read the saved GA-optimised fuzzy parameters.
 
@@ -241,17 +247,19 @@ def load_ga_params(path=None):
         params = {key: float(saved[key]) for key in GA_PARAM_KEYS}
     except (ValueError, KeyError, TypeError) as error:
         raise ControllerLoadError(
-            f"Saved GA parameters in {path.name} are unreadable or incomplete: "
-            f"{error!r}"
+            f"Saved GA parameters in {path.name} are unreadable or incomplete "
+            f"({type(error).__name__}). {_GA_RESTORE_HINT}"
         ) from error
 
     if not all(math.isfinite(value) for value in params.values()):
-        raise ControllerLoadError(f"{path.name} contains non-finite parameters.")
+        raise ControllerLoadError(
+            f"{path.name} contains non-finite parameters. {_GA_RESTORE_HINT}"
+        )
     t_lo, t_hi = TEMPERATURE_RANGE
     if not t_lo < params["t1"] < params["t2"] < params["t3"] < t_hi:
         raise ControllerLoadError(
             f"{path.name}: temperature parameters must satisfy "
-            f"{t_lo:g} < t1 < t2 < t3 < {t_hi:g}."
+            f"{t_lo:g} < t1 < t2 < t3 < {t_hi:g}. {_GA_RESTORE_HINT}"
         )
     return params
 

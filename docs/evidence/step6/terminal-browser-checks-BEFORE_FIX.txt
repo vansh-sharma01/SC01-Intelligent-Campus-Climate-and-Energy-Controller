@@ -1,0 +1,35 @@
+L01  PASS  open the app in Chrome
+N01  PASS  Baseline: defaults
+N02  PASS  Fuzzy: defaults
+N03  PASS  GA-optimised Fuzzy: defaults
+N04  PASS  NORMAL, Compare all three
+N05  PASS  press 'Download this result as CSV' after N04
+N06  PASS  HOT-HUMID 38/85/80/high, Compare all three + CSV
+N07  PASS  EMPTY 30/50/0/low, Compare all three + CSV
+N08  PASS  COOL 21/45/15/low, Compare all three + CSV
+N09  PASS  Baseline, NORMAL with tariff Low / Medium / High
+B01  PASS  boundary {'temp': '18'}, Compare all three + CSV
+B02  PASS  boundary {'temp': '45'}, Compare all three + CSV
+B03  PASS  boundary {'hum': '20'}, Compare all three + CSV
+B04  PASS  boundary {'hum': '100'}, Compare all three + CSV
+B05  PASS  boundary {'occ': '0'}, Compare all three + CSV
+B06  PASS  boundary {'occ': '100'}, Compare all three + CSV
+I01  PASS  Baseline with {'temp': '46'}
+I02  PASS  Baseline with {'temp': '17'}
+I03  PASS  Baseline with {'temp': '45.01'}
+I04  PASS  Baseline with {'temp': '17.99'}
+I05  PASS  Baseline with {'hum': '101'}
+I06  PASS  Baseline with {'hum': '19'}
+I07  PASS  Baseline with {'occ': '-1'}
+I08  PASS  Baseline with {'occ': '101'}
+I09  PASS  Baseline with {'occ': '20.5'}
+I10  PASS  Baseline with {'temp': 'abc'}
+I11  PASS  Baseline with {'occ': 'many'}
+I12  PASS  Baseline with {'hum': ''}
+I13  PASS  Baseline with {'temp': ''}
+I14  PASS  Baseline with {'temp': 'nan'}
+I15  PASS  Baseline with {'occ': 'inf'}
+I16  PASS  Baseline with {'temp': 'abc', 'hum': '200', 'occ': '-5'}
+I17  PASS  valid result, then invalid submit (temperature 46)
+I18  PASS  correct the value and submit again
+{"passed": 34, "failed": [], "total_rows": 34}

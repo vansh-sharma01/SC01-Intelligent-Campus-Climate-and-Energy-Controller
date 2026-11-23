@@ -312,7 +312,12 @@ with tab_eval:
         proxy = read_csv("results/step7/control_demand_proxy_summary.csv")
         comparison = read_csv("results/step7/three_controller_comparison.csv")
     except Exception as error:
-        st.error(f"Saved evaluation files could not be read: {error}")
+        # Name the folder, not the raw exception: it would show a full local path.
+        st.error(
+            "Saved evaluation files could not be read "
+            f"({type(error).__name__}). Check that the CSV files in "
+            "results/step7/ are present and complete (see the README)."
+        )
     else:
         st.markdown("**Mean cooling recommendation**")
         mean_table = proxy[["controller", "scenarios", "mean_cooling_command_pct"]].copy()
@@ -386,7 +391,11 @@ with tab_campus:
     try:
         bench = read_csv("data/external/galgotias/campus_energy_benchmark.csv")
     except Exception as error:
-        st.error(f"Benchmark file could not be read: {error}")
+        st.error(
+            f"Benchmark file could not be read ({type(error).__name__}). "
+            "Check that data/external/galgotias/campus_energy_benchmark.csv "
+            "is present and complete (see the README)."
+        )
     else:
         shown = bench.rename(columns={
             "academic_year": "Academic year",

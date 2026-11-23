@@ -1,0 +1,3 @@
+$ python src/make_step6_reference.py
+Reference rows written: 30 (10 cases x 3 controllers)
+Saved to: results/step6_testing/reference_predictions.csv

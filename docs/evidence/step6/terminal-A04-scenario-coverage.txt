@@ -1,0 +1,20 @@
+$ python src/run_step6_scenario_coverage.py
+Scenarios run with the current fuzzy controller: 10
+Scenario types: {'boundary': 4, 'normal': 3, 'stress': 3}
+Missing output values: 0
+
+Rules exercised by these 9 occupied scenarios: 5 of 11
+  fired: R05, R06, R08, R09, R10
+  never fired: R01, R02, R03, R04, R07, R11
+  (the dedicated rule-coverage tests in src/test_fuzzy_rule_coverage.py cover all 11 rules)
+
+Saved Step 4 result rows that differ from the current controller: 5 of 10
+  TEST-NORMAL-001: saved 60/medium -> current 15.0/low
+  TEST-NORMAL-002: saved 60/medium -> current 55.0/medium
+  TEST-NORMAL-003: saved 90/high -> current 78.11/high
+  TEST-BOUNDARY-003: saved 60/medium -> current 15.0/low
+  TEST-BOUNDARY-004: saved 60/high -> current 68.13/high
+The Step 4 file was not modified and is not current evidence.
+
+RESULT: PASS (10 rows, no missing outputs)
+exit code: 0

@@ -1,0 +1,4 @@
+$ python src/compare_step6_predictions.py --reference results/step6_testing/reference_predictions.csv docs/evidence/step6/downloads/*.csv   (retest after fix)
+Files compared: 10; rows compared: 30; cooling tolerance: +/-0.01
+PASS: every downloaded row matches the reference (fan level and energy action exactly, cooling within tolerance).
+exit code: 0

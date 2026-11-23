@@ -1,0 +1,173 @@
+{
+  "summary": {
+    "passed": 8,
+    "failed": [],
+    "total_rows": 8
+  },
+  "rows": [
+    {
+      "id": "R01",
+      "action": "GA file missing; GA-optimised Fuzzy, NORMAL",
+      "expected": "clear error naming results/step6/ga_best_params.json and 'Restore'; no result; no traceback; no absolute path",
+      "observed": {
+        "metrics": [],
+        "alerts": [
+          "A controller could not be loaded: Saved GA parameters not found: results/step6/ga_best_params.json. Restore results/step6/ga_best_params.json (do not re-run the GA here).",
+          "Check that the repository files are complete (see the README) and run the app from the repository root."
+        ],
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "R02",
+      "action": "GA file missing; Compare all three",
+      "expected": "same clear error; no partial result",
+      "observed": {
+        "metrics": [],
+        "alerts": [
+          "A controller could not be loaded: Saved GA parameters not found: results/step6/ga_best_params.json. Restore results/step6/ga_best_params.json (do not re-run the GA here).",
+          "Check that the repository files are complete (see the README) and run the app from the repository root."
+        ],
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "R03",
+      "action": "GA file missing; Baseline and Fuzzy",
+      "expected": "Baseline 50.00/Medium/Normal and Fuzzy 55.00/Medium/Normal",
+      "observed": {
+        "baseline": {
+          "metrics": [
+            "50.00 %",
+            "Medium",
+            "Normal"
+          ],
+          "alerts": [],
+          "traceback_shown": false
+        },
+        "fuzzy": {
+          "metrics": [
+            "55.00 %",
+            "Medium",
+            "Normal"
+          ],
+          "alerts": [],
+          "traceback_shown": false
+        }
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "R04",
+      "action": "restore the GA file (no restart); GA-optimised Fuzzy",
+      "expected": "31.41 % / Medium / Normal; error gone",
+      "observed": {
+        "metrics": [
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "alerts": [],
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "X01",
+      "action": "EXTRA observation (not a plan row): GA file removed again after it was loaded once",
+      "observed": {
+        "metrics": [
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "alerts": [],
+        "traceback_shown": false
+      },
+      "note": "the app caches the loaded GA parameters for the life of the server process"
+    },
+    {
+      "id": "R05",
+      "action": "GA file contains invalid JSON; GA-optimised Fuzzy",
+      "expected": "clear error about the GA file; no result; no traceback",
+      "observed": {
+        "metrics": [],
+        "alerts": [
+          "A controller could not be loaded: Saved GA parameters in ga_best_params.json are unreadable or incomplete (JSONDecodeError). Restore results/step6/ga_best_params.json from the repository (do not re-run the GA here).",
+          "Check that the repository files are complete (see the README) and run the app from the repository root."
+        ],
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "R06",
+      "action": "restore valid GA file (no restart)",
+      "expected": "31.41 % / Medium / Normal",
+      "observed": {
+        "metrics": [
+          "31.41 %",
+          "Medium",
+          "Normal"
+        ],
+        "alerts": [],
+        "traceback_shown": false
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "R07",
+      "action": "remove results/step7/three_controller_comparison.csv; open 'Evaluation results (synthetic)', then Recommendation",
+      "expected": "the tab shows an error message (no traceback); the Recommendation tab still gives 50.00/Medium/Normal",
+      "observed": {
+        "tab": {
+          "metrics": [],
+          "alerts": [
+            "Saved evaluation files could not be read (FileNotFoundError). Check that the CSV files in results/step7/ are present and complete (see the README)."
+          ],
+          "traceback_shown": false
+        },
+        "recommendation": {
+          "metrics": [
+            "50.00 %",
+            "Medium",
+            "Normal"
+          ],
+          "alerts": [
+            "Saved evaluation files could not be read (FileNotFoundError). Check that the CSV files in results/step7/ are present and complete (see the README)."
+          ],
+          "traceback_shown": false
+        }
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "R08",
+      "action": "remove data/external/galgotias/campus_energy_benchmark.csv; open 'Campus energy benchmark', then Recommendation",
+      "expected": "the tab shows an error message (no traceback); the Recommendation tab still gives 50.00/Medium/Normal",
+      "observed": {
+        "tab": {
+          "metrics": [],
+          "alerts": [
+            "Benchmark file could not be read (FileNotFoundError). Check that data/external/galgotias/campus_energy_benchmark.csv is present and complete (see the README)."
+          ],
+          "traceback_shown": false
+        },
+        "recommendation": {
+          "metrics": [
+            "50.00 %",
+            "Medium",
+            "Normal"
+          ],
+          "alerts": [
+            "Benchmark file could not be read (FileNotFoundError). Check that data/external/galgotias/campus_energy_benchmark.csv is present and complete (see the README)."
+          ],
+          "traceback_shown": false
+        }
+      },
+      "result": "PASS"
+    }
+  ]
+}

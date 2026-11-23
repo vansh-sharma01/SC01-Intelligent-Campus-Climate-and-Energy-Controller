@@ -1,0 +1,11 @@
+scenario_id,saved_step4_cooling_pct,saved_step4_fan_level,current_cooling_pct,current_fan_level,same
+TEST-NORMAL-001,60,medium,15.0,low,False
+TEST-NORMAL-002,60,medium,55.0,medium,False
+TEST-NORMAL-003,90,high,78.11,high,False
+TEST-BOUNDARY-001,0,off,0.0,off,True
+TEST-BOUNDARY-002,90,high,90.0,high,True
+TEST-BOUNDARY-003,60,medium,15.0,low,False
+TEST-BOUNDARY-004,60,high,68.13,high,False
+TEST-STRESS-001,90,high,90.0,high,True
+TEST-STRESS-002,90,high,90.0,high,True
+TEST-STRESS-003,90,high,90.0,high,True

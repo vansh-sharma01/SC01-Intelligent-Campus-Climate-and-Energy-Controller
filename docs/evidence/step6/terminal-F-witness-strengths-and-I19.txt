@@ -1,0 +1,30 @@
+Measured rule strengths at the plan's witness inputs (default parameters), read from the real fuzzy_cooling() locals
+F01 R01 witness 21/50/5: strength of R01 = 0.500000   (all 11: [0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+F02 R02 witness 21/50/30: strength of R02 = 0.500000   (all 11: [0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+F03 R03 witness 21/50/80: strength of R03 = 0.500000   (all 11: [0.0, 0.1429, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+F04 R04 witness 27/50/5: strength of R04 = 0.500000   (all 11: [0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+F05 R05 witness 27/50/50: strength of R05 = 0.500000   (all 11: [0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+F06 R06 witness 27/50/100: strength of R06 = 0.500000   (all 11: [0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0])
+F07 R07 witness 33/50/5: strength of R07 = 0.500000   (all 11: [0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0])
+F08 R08 witness 33/50/50: strength of R08 = 0.500000   (all 11: [0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0])
+F09 R09 witness 40/50/100: strength of R09 = 1.000000   (all 11: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0])
+F10 R10 witness 30/82.5/5: strength of R10 = 0.500000   (all 11: [0.0, 0.0, 0.0, 0.75, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0])
+F11 R11 witness 21/100/100: strength of R11 = 0.500000   (all 11: [0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5])
+
+$ python -m unittest discover -s src -p "test_product_v1.py" -v   (invalid-input tests only, plan row I19)
+test_all_problems_reported_together (test_product_v1.InvalidInputTests.test_all_problems_reported_together) ... ok
+test_blank_and_none_values (test_product_v1.InvalidInputTests.test_blank_and_none_values) ... ok
+test_error_messages_name_the_field_and_valid_range (test_product_v1.InvalidInputTests.test_error_messages_name_the_field_and_valid_range) ... ok
+test_humidity_out_of_range (test_product_v1.InvalidInputTests.test_humidity_out_of_range) ... ok
+test_invalid_input_never_reaches_a_controller (test_product_v1.InvalidInputTests.test_invalid_input_never_reaches_a_controller) ... ok
+test_invalid_values_are_not_replaced_by_defaults (test_product_v1.InvalidInputTests.test_invalid_values_are_not_replaced_by_defaults) ... ok
+test_missing_keys (test_product_v1.InvalidInputTests.test_missing_keys) ... ok
+test_nan_and_infinity (test_product_v1.InvalidInputTests.test_nan_and_infinity) ... ok
+test_non_mapping_input_is_rejected (test_product_v1.InvalidInputTests.test_non_mapping_input_is_rejected) ... ok
+test_occupancy_must_be_a_whole_number (test_product_v1.InvalidInputTests.test_occupancy_must_be_a_whole_number) ... ok
+test_occupancy_out_of_range (test_product_v1.InvalidInputTests.test_occupancy_out_of_range) ... ok
+test_temperature_out_of_range (test_product_v1.InvalidInputTests.test_temperature_out_of_range) ... ok
+test_text_where_number_expected (test_product_v1.InvalidInputTests.test_text_where_number_expected) ... ok
+test_unknown_tariff (test_product_v1.InvalidInputTests.test_unknown_tariff) ... ok
+Ran 39 tests in 0.402s
+OK

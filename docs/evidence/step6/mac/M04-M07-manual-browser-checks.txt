@@ -1,0 +1,40 @@
+SC01 Step 6 - Mac manual browser checks
+Branch: step-6-testing
+Base commit: c06d85b
+Environment: macOS, Python 3.9.6, Streamlit 1.50.0
+
+M04 - Normal comparison and CSV export: PASS
+Inputs: temperature 25, humidity 55, occupancy 50, tariff Medium.
+Selected Compare all three controllers.
+Observed:
+Baseline: 50.00% cooling, Medium fan, Normal action.
+Fuzzy: 55.00% cooling, Medium fan, Normal action.
+GA-optimised Fuzzy: 31.41% cooling, Medium fan, Normal action.
+Downloaded sc01_product_v1_recommendation.csv.
+The CSV comparison output is recorded in M04-csv-comparison.txt.
+Result: all 3 downloaded rows matched the reference.
+
+M05 - Maximum-temperature boundary: PASS
+Inputs: temperature 45, humidity 55, occupancy 50, tariff Medium.
+Observed:
+Baseline: 90.00% cooling, Medium fan, Normal action.
+Fuzzy: 90.00% cooling, High fan, Normal action.
+GA-optimised Fuzzy: 72.09% cooling, High fan, Normal action.
+All three outputs matched the expected boundary values.
+
+M06 - Invalid input handling: PASS
+Entered temperature abc. Application displayed:
+Temperature: enter a number.
+No stale recommendation was shown.
+Restored temperature to 25 and cleared humidity. Application displayed:
+Humidity: enter a value (20-100 %).
+No recommendation was generated for the invalid input.
+
+M07 - Missing GA resource and recovery: PASS
+Used a temporary project copy and Streamlit port 8502; the working repository resource was not removed or changed.
+With results/step6/ga_best_params.json absent, selecting GA displayed an actionable missing-file error instructing the user to restore the file and not rerun the GA.
+Baseline remained usable.
+Restored the saved GA parameter file in the temporary copy. GA selection recovered without restarting Streamlit.
+Temporary test copy and backup were removed after the test.
+
+Evidence type: contemporaneous manual test notes based on the operator's observed results; not screenshots.
